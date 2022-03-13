@@ -1,7 +1,30 @@
 *,
 body {
   /* font-family: "Roboto Condensed", sans-serif; */
+  font-family: "Roboto", sans-serif;
+  /* font-family: "Rokkitt", sans-serif; */
+
   box-sizing: border-box;
+}
+
+i {
+  font-size: 60px;
+}
+
+span {
+  font-family: "Rokkitt", sans-serif;
+}
+.App-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  height: 100vh;
+  background-color: pink;
+}
+
+.container {
+  min-height: 50px;
+  background-color: green;
+  font-size: 30px;
 }
 
 /* .App-logo {
