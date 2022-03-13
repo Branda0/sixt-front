@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <div className="Home-container">
-      {/* {modal && <Modal setModal={setModal} />} */}
+      {modal && <Modal setModal={setModal} />}
       {/* <i className="ico-estate" /> */}
       <span>SILSIM</span>
 
@@ -39,6 +39,7 @@ const Home = () => {
         infinite
         showDots
         responsive={responsiveCarousel}
+        disabled={true}
       >
         <img src={imgCarousel1} />
         <img src={imgCarousel2} />
