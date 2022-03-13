@@ -1,6 +1,9 @@
 import { useState } from "react";
 import DateRangePicker from "react-daterange-picker";
-import "react-daterange-picker/dist/css/react-calendar.css";
+// import "react-daterange-picker/dist/css/react-calendar.css";
+import "react-daterange-picker/src/css/react-calendar.scss";
+
+import Arrow from "./Arrow";
 
 const DateRange = ({ setDateStart, setDateEnd }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -20,7 +23,16 @@ const DateRange = ({ setDateStart, setDateEnd }) => {
         <input type="button" value="Toggle date picker" onClick={() => setIsOpen(!isOpen)} />
       </div>
 
-      {isOpen && <DateRangePicker value={dates} onSelect={onSelect} locale={"fr"} singleDateRange={true} />}
+      {isOpen && (
+        <DateRangePicker
+          value={dates}
+          onSelect={onSelect}
+          minimumDate={Date.now()}
+          locale={"FR"}
+          singleDateRange={true}
+          //   paginationArrowComponent={<Arrow />}
+        />
+      )}
     </div>
   );
 };
