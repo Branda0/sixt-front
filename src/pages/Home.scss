@@ -17,6 +17,29 @@
   }
 }
 
+.dateRange {
+  .DateRangePicker__CalendarSelection {
+    background-color: var(--clr-primary);
+    border: 1px solid var(--clr-primary);
+    color: red;
+  }
+
+  .DateRangePicker__CalendarHighlight--single {
+    border: 1px solid var(--clr-primary);
+  }
+
+  .DateRangePaginationArrow {
+    border: 1px solid red;
+  }
+  span {
+    font-size: 12px;
+  }
+  //   .DateRangePicker__LegendItemColor--selection {
+  //     background-color: green;
+  //   }
+  //   border: 3px solid green;
+}
+
 .modal {
   position: fixed;
   z-index: 2;

@@ -10,8 +10,9 @@ import DateRange from "../components/DateRange";
 const Home = () => {
   const [modal, setModal] = useState(false);
 
-  const [dateStart, setDateStart] = useState("");
-  const [dateEnd, setDateEnd] = useState("");
+  const [dateStart, setDateStart] = useState(null);
+  const [dateEnd, setDateEnd] = useState(null);
+  console.log("dateSTart =", typeof dateStart);
 
   return (
     <div className="Home-container">
@@ -24,7 +25,13 @@ const Home = () => {
         <span>start = {dateStart}</span>
         <span>end = {dateEnd}</span>
       </div>
-      <DateRange setDateStart={setDateStart} setDateEnd={setDateEnd} />
+
+      <DateRange
+        dateStart={dateStart}
+        dateEnd={dateEnd}
+        setDateStart={setDateStart}
+        setDateEnd={setDateEnd}
+      />
 
       <button onClick={() => setModal(true)}>MODAL</button>
     </div>
