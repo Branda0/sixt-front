@@ -1,0 +1,14 @@
+.dateRange {
+  .DateRangePicker__CalendarSelection {
+    background-color: var(--clr-primary);
+    border: 1px solid var(--clr-primary);
+  }
+
+  .DateRangePicker__CalendarHighlight--single {
+    border: 1px solid var(--clr-primary);
+  }
+
+  span {
+    font-size: 12px;
+  }
+}

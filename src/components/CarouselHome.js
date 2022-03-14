@@ -3,6 +3,7 @@ import imgCarousel2 from "../assets/img/carousel/carousel2.jpeg";
 import imgCarousel3 from "../assets/img/carousel/carousel3.jpeg";
 
 import Carousel from "react-multi-carousel";
+import "./CarouselHome.scss";
 import "react-multi-carousel/lib/styles.css";
 
 const CarouselHome = () => {
@@ -18,7 +19,7 @@ const CarouselHome = () => {
       autoPlaySpeed={4000}
       className="carousel"
       // containerClass="carousel-container"
-      itemClass="item-class"
+      // itemClass="item-class"
       dotListClass="dotList"
       infinite
       showDots

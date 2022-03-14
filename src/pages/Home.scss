@@ -12,7 +12,7 @@
     padding: 15px 50px;
     background-color: var(--clr-dark);
     .before-search-component {
-      margin: 20px 0;
+      margin: 10px 0;
       span {
         padding-bottom: 5px;
         margin-right: 20px;
@@ -39,24 +39,6 @@
     }
   }
 }
-.carousel {
-  border: 3px solid blue;
-  z-index: 1;
-  //   position: relative;
-  //   height: 100%;
-
-  img {
-    display: block;
-    height: 100%;
-    margin: auto;
-    width: 100%;
-  }
-
-  .dotList {
-    padding-bottom: 10px;
-    height: 6%;
-  }
-}
 
 .test {
   text-decoration: none;
@@ -66,66 +48,6 @@
   &.disabled {
     pointer-events: none;
     filter: brightness(0.5);
-  }
-}
-
-.dateRange {
-  .DateRangePicker__CalendarSelection {
-    background-color: var(--clr-primary);
-    border: 1px solid var(--clr-primary);
-    color: red;
-  }
-
-  .DateRangePicker__CalendarHighlight--single {
-    border: 1px solid var(--clr-primary);
-  }
-
-  .DateRangePaginationArrow {
-    border: 1px solid red;
-  }
-  span {
-    font-size: 12px;
-  }
-  //   .DateRangePicker__LegendItemColor--selection {
-  //     background-color: green;
-  //   }
-  //   border: 3px solid green;
-}
-
-.time-list {
-  //   border: 3px solid green;
-  display: flex;
-  flex-direction: column;
-  height: 300px;
-  width: 300px;
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: var(--clr-primary) #c8c8c8;
-  scrollbar-width: thin;
-
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: #c8c8c8;
-    border-radius: 3px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--clr-primary);
-    border-radius: 3px;
-  }
-  &::-webkit-scrollbar-button {
-    // height: 40px;
-  }
-
-  span {
-    padding: 10px;
-    cursor: pointer;
-
-    &.selected {
-      background-color: var(--clr-primary);
-      color: var(--clr-light);
-    }
   }
 }
 

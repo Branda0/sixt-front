@@ -1,4 +1,5 @@
 import timeTable from "../assets/data/timetable.json";
+import "./TimeSelector.scss";
 
 const TimeSelector = ({ setTime, indexSelected }) => {
   return (

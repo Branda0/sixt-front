@@ -1,16 +1,66 @@
 .search-components {
-  // border: 2px solid blue;
   color: var(--clr-light);
   display: flex;
+  align-items: flex-end;
+  margin-top: 20px;
 
-  div {
-    // border: 2px solid green;
+  & > div:not(:first-child) {
+    margin-left: 15px;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    width: 120px;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    color: var(--clr-primary);
+    font-family: "Roboto", sans-serif;
+  }
+
+  .date,
+  .time {
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: var(--clr-light);
+      transition: transform 200ms ease-in;
+    }
+    &.active {
+      &::after {
+        background-color: var(--clr-primary);
+      }
+    }
+
+    &:active {
+      background-color: green;
+    }
+  }
+
+  .searchBar-container {
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     .searchBar {
       position: relative;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       flex-direction: row;
+      height: 50px;
+      // border: 3px solid green;
       i {
         font-size: 20px;
         color: var(--clr-light);
@@ -18,13 +68,18 @@
         // background-color: var(--clr-primary);
       }
       input {
+        width: 100%;
+        cursor: pointer;
         border: none;
         background-color: transparent;
         text-decoration: none;
         outline: none;
         font-size: 20px;
-        padding: 10px 0;
+        font-family: "Roboto Condensed", sans-serif;
+        font-weight: 700;
+        color: var(--clr-primary);
       }
+
       &::after {
         content: "";
         position: absolute;
@@ -35,14 +90,28 @@
         background-color: var(--clr-light);
       }
     }
-    span {
-      margin: 10px 0;
-      font-size: 13px;
-      letter-spacing: 0.2px;
-      color: var(--clr-primary);
-      font-family: "Roboto", sans-serif;
-    }
+  }
+
+  .date-time-container {
     display: flex;
-    flex-direction: column;
+    align-items: flex-end;
+
+    div:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+
+  .offer-btn {
+    display: flex;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    background-color: var(--clr-primary);
+    color: (var(--clr-light));
   }
 }

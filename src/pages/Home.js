@@ -1,6 +1,5 @@
 import "./Home.scss";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 import timeTable from "../assets/data/timetable.json";
 // import classNames from "classnames";
@@ -35,6 +34,7 @@ const Home = () => {
 
   useEffect(() => {
     try {
+      // Get List of agencies corresponding to search input
       const fetchData = async () => {
         const response = await axios.get(`http://localhost:4000/agencies?term=${search}`);
 
@@ -42,6 +42,7 @@ const Home = () => {
         setIsLoading(false);
       };
 
+      // Don't fetch data if length of input is < 3
       if (search.length >= 3) {
         fetchData();
       } else {
@@ -60,15 +61,22 @@ const Home = () => {
           <span>VOITURES</span>
           <span>UTILITAIRES</span>
         </div>
-        <SearchComponents search={search} setSearch={setSearch} />
+        <SearchComponents
+          search={search}
+          setSearch={setSearch}
+          timeStart={timeStart}
+          setTimeStart={setTimeStart}
+          timeEnd={timeEnd}
+          setTimeEnd={setTimeEnd}
+        />
       </div>
 
       {modal && <Modal setModal={setModal} />}
       {/* <i className="ico-estate" /> */}
 
-      <Link className={`test ${disabled && "disabled"} `} to="/offerlist">
+      {/* <Link className={`test ${disabled && "disabled"} `} to="/offerlist">
         VOIR LES OFFRES
-      </Link>
+      </Link> */}
       <CarouselHome />
 
       {/* <AgencyModal data={agenciesData} setData={setAgenciesData} isLoading={isLoading} /> */}

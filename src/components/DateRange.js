@@ -2,6 +2,8 @@ import moment from "moment";
 import { useState, useEffect } from "react";
 import DateRangePicker from "react-daterange-picker";
 import "react-daterange-picker/dist/css/react-calendar.css";
+import "./DateRange.scss";
+
 // import "react-daterange-picker/src/css/react-calendar.scss";
 
 // import Arrow from "./Arrow";
