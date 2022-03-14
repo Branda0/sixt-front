@@ -10,7 +10,10 @@ body {
 :root {
   --clr-primary: #ff5f00;
   --clr-dark: #191919;
+  --clr-lightgrey: #b2b2b2;
+  --clr-grey: #969696;
   --clr-light: #ffffff;
+  --max-width: 1600px;
 }
 
 i {
@@ -21,16 +24,10 @@ span {
   // font-family: "Rokkitt", sans-serif;
 }
 .App-container {
-  max-width: 1600px;
+  max-width: var(--max-width);
   margin: 0 auto;
   height: 100vh;
   background-color: white;
-}
-
-.container {
-  min-height: 50px;
-  background-color: green;
-  font-size: 30px;
 }
 
 /* .App-logo {

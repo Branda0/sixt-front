@@ -1,9 +1,62 @@
+import logo from "../assets/img/sixt-logo.png";
+import "./Header.scss";
+
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
   return (
-    <div className="container">
-      <span>Hello world</span>
+    <div className="header-container">
+      <img src={logo} />
+      <div className="center-header">
+        {location.pathname === "/" ? (
+          <nav className="home">
+            <span>RENT</span>
+            <span>SHARE</span>
+            <span>RIDE</span>
+            <span>SIXT+</span>
+          </nav>
+        ) : (
+          <div className="offer">
+            <div
+              className={
+                (location.pathname === "/offerlist" ||
+                  location.pathname === "/offerconfig" ||
+                  location.pathname === "/personnaldetails") &&
+                "color-status"
+              }
+            >
+              <i className={location.pathname === "/offerconfig" && "ico-bullet-xl"}>
+                {location.pathname === "/offerconfig" ? "" : "1"}
+              </i>
+              <span>SÉLECTION DES VÉHICULES</span>
+            </div>
+
+            <div
+              className={
+                (location.pathname === "/offerconfig" || location.pathname === "/personnaldetails") &&
+                "color-status"
+              }
+            >
+              <i className={location.pathname === "/personnaldetails" && "ico-bullet-xl"}>
+                {location.pathname === "/offerconfig" ? "" : "2"}
+              </i>
+              <span>PROTECTIONS ET OPTIONS</span>
+            </div>
+            <div className={location.pathname === "/personnaldetails" && "color-status"}>
+              <i className="dot">{location.pathname === "/offerconfig" ? "yo" : "3"}</i>
+              <span>CONDUCTEUR</span>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="back-office">
+        <i className="ico-planet" />
+        <span>BACKOFFICE</span>
+      </div>
+
+      {/* <span>Hello world</span> */}
     </div>
   );
 };

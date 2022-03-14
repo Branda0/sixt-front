@@ -1,3 +1,44 @@
+.home-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  &.modal-open {
+    overflow: hidden;
+    border: 4px solid greenyellow;
+  }
+
+  .search-container {
+    padding: 15px 50px;
+    background-color: var(--clr-dark);
+    .before-search-component {
+      margin: 20px 0;
+      span {
+        padding-bottom: 5px;
+        margin-right: 20px;
+        position: relative;
+        font-size: 17px;
+        font-family: "Roboto Condensed", sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        color: var(--clr-light);
+
+        &:first-child {
+          color: var(--clr-primary);
+          &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 1.2px;
+            width: 100%;
+            background-color: var(--clr-primary);
+          }
+        }
+      }
+    }
+  }
+}
 .carousel {
   border: 3px solid blue;
   z-index: 1;
@@ -14,6 +55,17 @@
   .dotList {
     padding-bottom: 10px;
     height: 6%;
+  }
+}
+
+.test {
+  text-decoration: none;
+  background-color: var(--clr-primary);
+  color: var(--clr-light);
+
+  &.disabled {
+    pointer-events: none;
+    filter: brightness(0.5);
   }
 }
 
@@ -40,6 +92,58 @@
   //   border: 3px solid green;
 }
 
+.time-list {
+  //   border: 3px solid green;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: var(--clr-primary) #c8c8c8;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #c8c8c8;
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--clr-primary);
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-button {
+    // height: 40px;
+  }
+
+  span {
+    padding: 10px;
+    cursor: pointer;
+
+    &.selected {
+      background-color: var(--clr-primary);
+      color: var(--clr-light);
+    }
+  }
+}
+
+.agencies-modal {
+  z-index: 2;
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid green;
+
+  .modal-content {
+    width: 100%;
+    height: 300px;
+    background-color: white;
+  }
+}
+
 .modal {
   position: fixed;
   z-index: 2;
@@ -48,7 +152,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,14 +166,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.Home-container {
-  display: flex;
-  flex-direction: column;
-  // border: 3px solid red;
-  /* flex-direction: column; */
-  /* background-color: blue; */
-  /* height: 100%; */
-  /* flex: auto; */
 }

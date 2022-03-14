@@ -6,6 +6,7 @@ import "./assets/fonts/stylesheet.css";
 
 //pages
 import Home from "./pages/Home";
+import OfferList from "./pages/OfferList";
 
 //components
 import Header from "./components/Header";
@@ -17,10 +18,10 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/offerlist" element={<OfferList />} />
-        <Route path="/offerconfig" element={<OfferConfig />} />
-        <Route path="/personnaldetails" element={<PersonnalDetails />} />
-        <Route path="/backoffice" element={<BackOffice />} /> */}
+          <Route path="/offerlist" element={<OfferList />} />
+          {/* // <Route path="/offerconfig" element={<OfferConfig />} />
+        // <Route path="/personnaldetails" element={<PersonnalDetails />} />
+        // <Route path="/backoffice" element={<BackOffice />} /> */}
         </Routes>
       </div>
     </Router>
