@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import axios from "axios";
 import moment from "moment";
@@ -12,6 +12,7 @@ import DateRange from "./DateRange";
 import TimeSelector from "./TimeSelector";
 
 const SearchComponents = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   moment.locale("fr", {
     monthsShort: "Janv._Févr._Mars_Avr._Mai_Juin_Juil._Août_Sept._Oct._Nov._Déc.".split("_"),
@@ -41,7 +42,6 @@ const SearchComponents = () => {
 
         setAgenciesData(response.data);
         setIsLoading(false);
-        console.log(response.data);
       };
 
       // Don't fetch data if length of input is < 3
@@ -59,12 +59,12 @@ const SearchComponents = () => {
   }, [search]);
 
   useEffect(() => {
-    // moment.locale("fr");
-    var date = moment(dateStart);
-    console.log(date.format("DD MMMM"));
-    // setSearchModal(false);
     // setIsLoading(true);
-  }, [dateStart, dateEnd]);
+    // const start = new Date(`${dateStart}T${timeStart.value}:00`);
+    // const end = new Date(`${dateEnd}T${timeEnd.value}:00`);
+    // console.log(start + " : " + end);
+    console.log(new Date(`${dateStart}T${timeStart.value}:00`) < new Date(`${dateEnd}T${timeEnd.value}:00`));
+  }, [dateStart, dateEnd, timeStart, timeEnd]);
 
   return (
     <>
@@ -158,9 +158,19 @@ const SearchComponents = () => {
             </div>
           </div>
           <div>
-            <Link className={`offer-btn`} to="/offerlist">
-              VOIR LES OFFRES
-            </Link>
+            {location.pathname === "/" && (
+              <button
+                // Check if agency value is known and Date of departure is before Date of return before enabling "go to" offers page button"
+                disabled={
+                  !agency ||
+                  new Date(`${dateStart}T${timeStart.value}:00`) >= new Date(`${dateEnd}T${timeEnd.value}:00`)
+                }
+                onClick={() => navigate("/offerlist")}
+                className="offer-btn"
+              >
+                VOIR LES OFFRES
+              </button>
+            )}
           </div>
         </div>
         <div className="pop-up">
