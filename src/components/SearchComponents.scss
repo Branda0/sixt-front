@@ -55,7 +55,7 @@
     .time {
       cursor: pointer;
       color: white;
-      font-size: 20px;
+      font-size: 19px;
       position: relative;
 
       &::after {
@@ -66,16 +66,10 @@
         height: 2px;
         width: 100%;
         background-color: var(--clr-light);
-        transition: transform 200ms ease-in;
+        transition: all 200ms ease-in;
       }
-      &.active {
-        &::after {
-          background-color: var(--clr-primary);
-        }
-      }
-
-      &:active {
-        background-color: green;
+      &.selected::after {
+        background-color: var(--clr-primary);
       }
     }
 
@@ -84,6 +78,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+
       .searchBar {
         position: relative;
         display: flex;
@@ -122,6 +117,11 @@
           left: 0;
           bottom: 0;
           background-color: var(--clr-light);
+          transition: all 200ms ease-in;
+        }
+
+        &.selected::after {
+          background-color: var(--clr-primary);
         }
       }
     }
@@ -196,7 +196,7 @@
       }
       span {
         color: var(--clr-dark);
-        padding: 7px 0;
+        padding: 12px 0;
         cursor: pointer;
         transition: font-size 200ms ease-in;
       }
@@ -210,6 +210,27 @@
       padding: 20px;
       display: flex;
       justify-content: center;
+    }
+
+    .time-picker {
+      display: flex;
+      // flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px 50px;
+
+      div {
+        display: flex;
+        flex-direction: column;
+
+        .title {
+          font-size: 23px;
+          font-weight: 700;
+          text-align: center;
+          padding: 10px 0;
+          width: 100%;
+          margin-bottom: 10px;
+        }
+      }
     }
   }
 }

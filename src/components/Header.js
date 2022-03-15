@@ -2,13 +2,16 @@ import logo from "../assets/img/sixt-logo.png";
 import "./Header.scss";
 
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();
   return (
     <div className="header-container">
-      <img src={logo} />
+      <Link to="/">
+        <img src={logo} />
+      </Link>
+
       <div className="center-header">
         {location.pathname === "/" ? (
           <nav className="home">

@@ -17,6 +17,7 @@ const DateRange = ({ setDateStart, setDateEnd, setDateModal }) => {
   today.setHours(0, 0, 0, 0);
   //   const today = Date("2022-03-13");
   const dateTest2 = new Date(2022, 2, 17);
+  // const [dates, setDates] = useState(moment.range(moment(today), moment(today)));
   const [dates, setDates] = useState(moment.range(moment(today), moment(today)));
   //   const [dates, setDates] = useState(null);
   //   const dateTest = new Date(2022, 3, 15);
