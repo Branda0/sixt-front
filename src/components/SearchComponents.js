@@ -18,28 +18,47 @@ const SearchComponents = () => {
     monthsShort: "Janv._Févr._Mars_Avr._Mai_Juin_Juil._Août_Sept._Oct._Nov._Déc.".split("_"),
   });
 
+  //Search engine selection Modals pop-up
   const [searchModal, setSearchModal] = useState(false);
   const [dateModal, setDateModal] = useState(false);
   const [startTimeModal, setStartTimeModal] = useState(false);
   const [endTimeModal, setEndTimeModal] = useState(false);
 
+  //Agencies Data from API call and Loading status
   const [agenciesData, setAgenciesData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [search, setSearch] = useState("");
 
-  const [agency, setAgency] = useState({});
-  const [timeStart, setTimeStart] = useState({ value: timeTable[2], index: 2 });
-  const [timeEnd, setTimeEnd] = useState({ value: timeTable[16], index: 16 });
+  //Stored engine states
+  const storedSearch = localStorage.getItem("storedSearch");
+  const storedAgency = localStorage.getItem("storedAgency");
+  const storedTimeStart = JSON.parse(localStorage.getItem("storedTimeStart"));
+  const storedTimeEnd = JSON.parse(localStorage.getItem("storedTimeEnd"));
+  const storedDateStart = localStorage.getItem("storedDateStart");
+  const storedDateEnd = localStorage.getItem("storedDateEnd");
 
-  const [dateStart, setDateStart] = useState(moment(Date.now()).format("YYYY-MM-DD"));
-  const [dateEnd, setDateEnd] = useState(moment(Date.now()).format("YYYY-MM-DD"));
+  //Search engine states
+  const [search, setSearch] = useState(storedSearch || "");
+  const [agency, setAgency] = useState(storedAgency || {});
+  const [timeStart, setTimeStart] = useState(storedTimeStart || { value: timeTable[2], index: 2 });
+  const [timeEnd, setTimeEnd] = useState(storedTimeEnd || { value: timeTable[16], index: 16 });
+  const [dateStart, setDateStart] = useState(storedDateStart || moment(Date.now()).format("YYYY-MM-DD"));
+  const [dateEnd, setDateEnd] = useState(moment(storedDateEnd || Date.now()).format("YYYY-MM-DD"));
 
+  // States local storage saving Hook (search state saved on agency list selection)
+  useEffect(() => {
+    localStorage.setItem("storedAgency", String(agency));
+    localStorage.setItem("storedTimeStart", JSON.stringify(timeStart));
+    localStorage.setItem("storedTimeEnd", JSON.stringify(timeEnd));
+    localStorage.setItem("storedDateStart", String(dateStart));
+    localStorage.setItem("storedDateEnd", String(dateEnd));
+  }, [agency, timeStart, timeEnd, dateStart, dateEnd]);
+
+  // Agencies data fetch Hook
   useEffect(() => {
     try {
       // Get List of agencies corresponding to search input
       const fetchData = async () => {
         const response = await axios.get(`http://localhost:4000/agencies?term=${search}`);
-
         setAgenciesData(response.data);
         setIsLoading(false);
       };
@@ -57,14 +76,6 @@ const SearchComponents = () => {
       console.log({ error: error.message });
     }
   }, [search]);
-
-  useEffect(() => {
-    // setIsLoading(true);
-    // const start = new Date(`${dateStart}T${timeStart.value}:00`);
-    // const end = new Date(`${dateEnd}T${timeEnd.value}:00`);
-    // console.log(start + " : " + end);
-    console.log(new Date(`${dateStart}T${timeStart.value}:00`) < new Date(`${dateEnd}T${timeEnd.value}:00`));
-  }, [dateStart, dateEnd, timeStart, timeEnd]);
 
   return (
     <>
@@ -105,7 +116,7 @@ const SearchComponents = () => {
               <span
                 className={`date ${dateModal && "selected"}`}
                 onClick={() => {
-                  setDateModal(true);
+                  setDateModal(!dateModal);
                   setSearchModal(false);
                   setEndTimeModal(false);
                   setStartTimeModal(false);
@@ -118,7 +129,7 @@ const SearchComponents = () => {
               <span
                 className={`time ${startTimeModal && "selected"}`}
                 onClick={() => {
-                  setStartTimeModal(true);
+                  setStartTimeModal(!startTimeModal);
                   setEndTimeModal(false);
                   setSearchModal(false);
                   setDateModal(false);
@@ -134,7 +145,7 @@ const SearchComponents = () => {
               <span
                 className={`date ${dateModal && "selected"}`}
                 onClick={() => {
-                  setDateModal(true);
+                  setDateModal(!dateModal);
                   setSearchModal(false);
                   setEndTimeModal(false);
                   setStartTimeModal(false);
@@ -147,7 +158,7 @@ const SearchComponents = () => {
               <span
                 className={`time ${endTimeModal && "selected"}`}
                 onClick={() => {
-                  setEndTimeModal(true);
+                  setEndTimeModal(!endTimeModal);
                   setStartTimeModal(false);
                   setSearchModal(false);
                   setDateModal(false);
@@ -183,6 +194,7 @@ const SearchComponents = () => {
                     onClick={() => {
                       setAgency(agency.id);
                       setSearch(agency.title);
+                      localStorage.setItem("storedSearch", String(agency.title));
                       setSearchModal(false);
                     }}
                   >{`${agency.title}`}</span>

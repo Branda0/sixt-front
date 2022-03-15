@@ -14,30 +14,9 @@ import TimeSelector from "../components/TimeSelector";
 const Home = () => {
   const [modal, setModal] = useState(false);
 
-  const [agency, setAgency] = useState({});
-
-  const [agencyModal, setAgencyModal] = useState(false);
-
-  // const [timeStart, setTimeStart] = useState({ value: timeTable[2], index: 2 });
-  // const [timeEnd, setTimeEnd] = useState({ value: timeTable[16], index: 16 });
-  // console.log(timeStart[0]);
-  // console.log(timeStart[1]);
-  // console.log(timeStart.time);
-  // const [dateStart, setDateStart] = useState(null);
-  // const [dateEnd, setDateEnd] = useState(null);
-
-  const disabled = false;
-
   return (
     <div className={`home-container ${modal && "modal-open"}`}>
-      <SearchComponents
-      // search={search}
-      // setSearch={setSearch}
-      // timeStart={timeStart}
-      // setTimeStart={setTimeStart}
-      // timeEnd={timeEnd}
-      // setTimeEnd={setTimeEnd}
-      />
+      <SearchComponents />
 
       {modal && <Modal setModal={setModal} />}
       {/* <i className="ico-estate" /> */}

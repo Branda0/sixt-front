@@ -2,14 +2,11 @@ import SearchComponents from "../components/SearchComponents";
 
 const OfferList = () => {
   return (
-    <SearchComponents
-    // search={search}
-    // setSearch={setSearch}
-    // timeStart={timeStart}
-    // setTimeStart={setTimeStart}
-    // timeEnd={timeEnd}
-    // setTimeEnd={setTimeEnd}
-    />
+    <div>
+      <SearchComponents />
+      <span>TEST</span>
+      <span>{agency}</span>
+    </div>
   );
 };
 
