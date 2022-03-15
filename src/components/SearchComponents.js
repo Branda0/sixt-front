@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+
+import { SearchContext } from "../context/SearchContext";
 
 import axios from "axios";
 import moment from "moment";
 
-import timeTable from "../assets/data/timetable.json";
 import "./SearchComponents.scss";
 
 import Modal from "./Modal";
@@ -18,6 +19,14 @@ const SearchComponents = () => {
     monthsShort: "Janv._Févr._Mars_Avr._Mai_Juin_Juil._Août_Sept._Oct._Nov._Déc.".split("_"),
   });
 
+  // Getting States value from Global context
+  const [search, setSearch] = useContext(SearchContext).search;
+  const [agency, setAgency] = useContext(SearchContext).agency;
+  const [timeStart, setTimeStart] = useContext(SearchContext).timeStart;
+  const [timeEnd, setTimeEnd] = useContext(SearchContext).timeEnd;
+  const [dateStart, setDateStart] = useContext(SearchContext).dateStart;
+  const [dateEnd, setDateEnd] = useContext(SearchContext).dateEnd;
+
   //Search engine selection Modals pop-up
   const [searchModal, setSearchModal] = useState(false);
   const [dateModal, setDateModal] = useState(false);
@@ -29,29 +38,32 @@ const SearchComponents = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   //Stored engine states
-  const storedSearch = localStorage.getItem("storedSearch");
-  const storedAgency = localStorage.getItem("storedAgency");
-  const storedTimeStart = JSON.parse(localStorage.getItem("storedTimeStart"));
-  const storedTimeEnd = JSON.parse(localStorage.getItem("storedTimeEnd"));
-  const storedDateStart = localStorage.getItem("storedDateStart");
-  const storedDateEnd = localStorage.getItem("storedDateEnd");
+  // const storedSearch = localStorage.getItem("storedSearch");
+  // const storedAgency = localStorage.getItem("storedAgency");
+  // const storedTimeStart = JSON.parse(localStorage.getItem("storedTimeStart"));
+  // const storedTimeEnd = JSON.parse(localStorage.getItem("storedTimeEnd"));
+  // const storedDateStart = localStorage.getItem("storedDateStart");
+  // const storedDateEnd = localStorage.getItem("storedDateEnd");
 
   //Search engine states
-  const [search, setSearch] = useState(storedSearch || "");
-  const [agency, setAgency] = useState(storedAgency || {});
-  const [timeStart, setTimeStart] = useState(storedTimeStart || { value: timeTable[2], index: 2 });
-  const [timeEnd, setTimeEnd] = useState(storedTimeEnd || { value: timeTable[16], index: 16 });
-  const [dateStart, setDateStart] = useState(storedDateStart || moment(Date.now()).format("YYYY-MM-DD"));
-  const [dateEnd, setDateEnd] = useState(moment(storedDateEnd || Date.now()).format("YYYY-MM-DD"));
+  // const [search, setSearch] = useState(storedSearch || "");
+  // const [agency, setAgency] = useState(storedAgency || {});
+  // const [timeStart, setTimeStart] = useState(storedTimeStart || { value: timeTable[2], index: 2 });
+  // const [timeEnd, setTimeEnd] = useState(storedTimeEnd || { value: timeTable[16], index: 16 });
+  // const [dateStart, setDateStart] = useState(storedDateStart || moment(Date.now()).format("YYYY-MM-DD"));
+  // const [dateEnd, setDateEnd] = useState(moment(storedDateEnd || Date.now()).format("YYYY-MM-DD"));
 
   // States local storage saving Hook (search state saved on agency list selection)
-  useEffect(() => {
-    localStorage.setItem("storedAgency", String(agency));
-    localStorage.setItem("storedTimeStart", JSON.stringify(timeStart));
-    localStorage.setItem("storedTimeEnd", JSON.stringify(timeEnd));
-    localStorage.setItem("storedDateStart", String(dateStart));
-    localStorage.setItem("storedDateEnd", String(dateEnd));
-  }, [agency, timeStart, timeEnd, dateStart, dateEnd]);
+  // useEffect(() => {
+  //   // localStorage.setItem("storedAgency", String(agency));
+  //   localStorage.setItem("storedTimeStart", JSON.stringify(timeStart));
+  //   localStorage.setItem("storedTimeEnd", JSON.stringify(timeEnd));
+  //   localStorage.setItem("storedDateStart", String(dateStart));
+  //   localStorage.setItem("storedDateEnd", String(dateEnd));
+
+  //   console.log(agency);
+  //   // console.log(cart.totalPrice);
+  // }, [timeStart, timeEnd, dateStart, dateEnd]);
 
   // Agencies data fetch Hook
   useEffect(() => {
