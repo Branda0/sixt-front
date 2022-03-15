@@ -10,66 +10,34 @@ import AgencyModal from "../components/AgencyModal";
 import CarouselHome from "../components/CarouselHome";
 import DateRange from "../components/DateRange";
 import TimeSelector from "../components/TimeSelector";
-import axios from "axios";
 
 const Home = () => {
   const [modal, setModal] = useState(false);
 
   const [agency, setAgency] = useState({});
-  const [agenciesData, setAgenciesData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+
   const [agencyModal, setAgencyModal] = useState(false);
 
-  const [timeStart, setTimeStart] = useState({ value: timeTable[2], index: 2 });
-  const [timeEnd, setTimeEnd] = useState({ value: timeTable[16], index: 16 });
+  // const [timeStart, setTimeStart] = useState({ value: timeTable[2], index: 2 });
+  // const [timeEnd, setTimeEnd] = useState({ value: timeTable[16], index: 16 });
   // console.log(timeStart[0]);
   // console.log(timeStart[1]);
   // console.log(timeStart.time);
-  const [dateStart, setDateStart] = useState(null);
-  const [dateEnd, setDateEnd] = useState(null);
-
-  const [search, setSearch] = useState("");
+  // const [dateStart, setDateStart] = useState(null);
+  // const [dateEnd, setDateEnd] = useState(null);
 
   const disabled = false;
 
-  useEffect(() => {
-    try {
-      // Get List of agencies corresponding to search input
-      const fetchData = async () => {
-        const response = await axios.get(`http://localhost:4000/agencies?term=${search}`);
-
-        setAgenciesData(response.data);
-        setIsLoading(false);
-      };
-
-      // Don't fetch data if length of input is < 3
-      if (search.length >= 3) {
-        fetchData();
-      } else {
-        setAgenciesData(null);
-        setIsLoading(true);
-      }
-    } catch (error) {
-      console.log({ error: error.message });
-    }
-  }, [search]);
-
   return (
     <div className={`home-container ${modal && "modal-open"}`}>
-      <div className="search-container">
-        <div className="before-search-component">
-          <span>VOITURES</span>
-          <span>UTILITAIRES</span>
-        </div>
-        <SearchComponents
-          search={search}
-          setSearch={setSearch}
-          timeStart={timeStart}
-          setTimeStart={setTimeStart}
-          timeEnd={timeEnd}
-          setTimeEnd={setTimeEnd}
-        />
-      </div>
+      <SearchComponents
+      // search={search}
+      // setSearch={setSearch}
+      // timeStart={timeStart}
+      // setTimeStart={setTimeStart}
+      // timeEnd={timeEnd}
+      // setTimeEnd={setTimeEnd}
+      />
 
       {modal && <Modal setModal={setModal} />}
       {/* <i className="ico-estate" /> */}
@@ -82,17 +50,17 @@ const Home = () => {
       {/* <AgencyModal data={agenciesData} setData={setAgenciesData} isLoading={isLoading} /> */}
 
       <div className="dates">
-        <span>start = {dateStart}</span>
-        <span>end = {dateEnd}</span>
+        {/* <span>start = {dateStart}</span>
+        <span>end = {dateEnd}</span> */}
       </div>
-      <span>{timeStart.value}</span>
-      <DateRange
+      {/* <span>{timeStart.value}</span> */}
+      {/* <DateRange
         dateStart={dateStart}
         dateEnd={dateEnd}
         setDateStart={setDateStart}
         setDateEnd={setDateEnd}
       />
-      <TimeSelector indexSelected={timeStart.index} setTime={setTimeStart} />
+      <TimeSelector indexSelected={timeStart.index} setTime={setTimeStart} /> */}
 
       <button onClick={() => setModal(true)}>MODAL</button>
     </div>

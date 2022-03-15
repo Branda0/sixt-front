@@ -9,34 +9,6 @@
   }
 
   .search-container {
-    padding: 15px 50px;
-    background-color: var(--clr-dark);
-    .before-search-component {
-      margin: 10px 0;
-      span {
-        padding-bottom: 5px;
-        margin-right: 20px;
-        position: relative;
-        font-size: 17px;
-        font-family: "Roboto Condensed", sans-serif;
-        font-weight: 700;
-        letter-spacing: 0.2px;
-        color: var(--clr-light);
-
-        &:first-child {
-          color: var(--clr-primary);
-          &:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 1.2px;
-            width: 100%;
-            background-color: var(--clr-primary);
-          }
-        }
-      }
-    }
   }
 }
 

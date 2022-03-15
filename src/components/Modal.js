@@ -2,7 +2,7 @@ const Modal = ({ setModal }) => {
   return (
     <div
       className="modal"
-      onClick={(event) => {
+      onClick={() => {
         setModal(false);
       }}
     >

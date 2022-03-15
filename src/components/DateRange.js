@@ -8,8 +8,7 @@ import "./DateRange.scss";
 
 // import Arrow from "./Arrow";
 
-const DateRange = ({ setDateStart, setDateEnd }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const DateRange = ({ setDateStart, setDateEnd, setDateModal }) => {
   //   const today = new Date(2022, 2, 13);
   //   const today2 = new Date("2022-03-13T00:00:00");
   //   console.log(today);
@@ -46,30 +45,23 @@ const DateRange = ({ setDateStart, setDateEnd }) => {
   const onSelect = (dates) => {
     // setValue(value);
     setDates(dates);
+    setDateModal(false);
   };
 
   return (
-    <div>
-      <div>
-        <input type="button" value="Toggle date picker" onClick={() => setIsOpen(!isOpen)} />
-      </div>
-
-      {isOpen && (
-        <DateRangePicker
-          value={dates}
-          onSelect={onSelect}
-          className={"dateRange"}
-          minimumDate={new Date()}
-          //   initialDate={new Date()}
-          //   initialFromValue={false}
-          singleDateRange={true}
-          firstOfWeek={1}
-          locale={moment.locale("fr")}
-          //   selectionType={"single"}
-          // paginationArrowComponent={<span>YO</span>}
-        />
-      )}
-    </div>
+    <DateRangePicker
+      value={dates}
+      onSelect={onSelect}
+      className={"dateRange"}
+      minimumDate={new Date()}
+      //   initialDate={new Date()}
+      //   initialFromValue={false}
+      singleDateRange={true}
+      firstOfWeek={1}
+      locale={moment.locale("fr")}
+      //   selectionType={"single"}
+      // paginationArrowComponent={<span>YO</span>}
+    />
   );
 };
 

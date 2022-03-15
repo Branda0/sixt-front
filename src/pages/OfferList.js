@@ -1,5 +1,16 @@
+import SearchComponents from "../components/SearchComponents";
+
 const OfferList = () => {
-  return <div>YES</div>;
+  return (
+    <SearchComponents
+    // search={search}
+    // setSearch={setSearch}
+    // timeStart={timeStart}
+    // setTimeStart={setTimeStart}
+    // timeEnd={timeEnd}
+    // setTimeEnd={setTimeEnd}
+    />
+  );
 };
 
 export default OfferList;
