@@ -21,6 +21,12 @@ export const SearchProvider = (props) => {
   const [dateStart, setDateStart] = useState(storedDateStart || moment(Date.now()).format("YYYY-MM-DD"));
   const [dateEnd, setDateEnd] = useState(moment(storedDateEnd || Date.now()).format("YYYY-MM-DD"));
 
+  //Calculate total days of renting => Math.ceil as "1.2" days is billed as 2 full days"
+  const rentalDays = Math.ceil(
+    (new Date(`${dateEnd}T${timeEnd.value}:00`) - new Date(`${dateStart}T${timeStart.value}:00`)) /
+      (1000 * 3600 * 24)
+  );
+
   // States local storage saving Hook (search state saved on agency list selection)
   useEffect(() => {
     localStorage.setItem("storedAgency", String(agency));
@@ -28,10 +34,7 @@ export const SearchProvider = (props) => {
     localStorage.setItem("storedTimeEnd", JSON.stringify(timeEnd));
     localStorage.setItem("storedDateStart", String(dateStart));
     localStorage.setItem("storedDateEnd", String(dateEnd));
-
-    console.log(agency);
-    // console.log(cart.totalPrice);
-  }, [timeStart, timeEnd, dateStart, dateEnd]);
+  }, [agency, timeStart, timeEnd, dateStart, dateEnd]);
 
   return (
     <SearchContext.Provider
@@ -42,6 +45,7 @@ export const SearchProvider = (props) => {
         timeEnd: [timeEnd, setTimeEnd],
         dateStart: [dateStart, setDateStart],
         dateEnd: [dateEnd, setDateEnd],
+        rentalDays: rentalDays,
       }}
     >
       {props.children}

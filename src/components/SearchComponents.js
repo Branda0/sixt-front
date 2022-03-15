@@ -19,7 +19,7 @@ const SearchComponents = () => {
     monthsShort: "Janv._Févr._Mars_Avr._Mai_Juin_Juil._Août_Sept._Oct._Nov._Déc.".split("_"),
   });
 
-  // Getting States value from Global context
+  // States values from context
   const [search, setSearch] = useContext(SearchContext).search;
   const [agency, setAgency] = useContext(SearchContext).agency;
   const [timeStart, setTimeStart] = useContext(SearchContext).timeStart;
@@ -27,43 +27,18 @@ const SearchComponents = () => {
   const [dateStart, setDateStart] = useContext(SearchContext).dateStart;
   const [dateEnd, setDateEnd] = useContext(SearchContext).dateEnd;
 
-  //Search engine selection Modals pop-up
+  // number of rental days (from context)
+  const rentalDays = useContext(SearchContext).rentalDays;
+
+  // Search engine selection Modals pop-up states
   const [searchModal, setSearchModal] = useState(false);
   const [dateModal, setDateModal] = useState(false);
   const [startTimeModal, setStartTimeModal] = useState(false);
   const [endTimeModal, setEndTimeModal] = useState(false);
 
-  //Agencies Data from API call and Loading status
+  // Agencies Data from API call and Loading status
   const [agenciesData, setAgenciesData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-
-  //Stored engine states
-  // const storedSearch = localStorage.getItem("storedSearch");
-  // const storedAgency = localStorage.getItem("storedAgency");
-  // const storedTimeStart = JSON.parse(localStorage.getItem("storedTimeStart"));
-  // const storedTimeEnd = JSON.parse(localStorage.getItem("storedTimeEnd"));
-  // const storedDateStart = localStorage.getItem("storedDateStart");
-  // const storedDateEnd = localStorage.getItem("storedDateEnd");
-
-  //Search engine states
-  // const [search, setSearch] = useState(storedSearch || "");
-  // const [agency, setAgency] = useState(storedAgency || {});
-  // const [timeStart, setTimeStart] = useState(storedTimeStart || { value: timeTable[2], index: 2 });
-  // const [timeEnd, setTimeEnd] = useState(storedTimeEnd || { value: timeTable[16], index: 16 });
-  // const [dateStart, setDateStart] = useState(storedDateStart || moment(Date.now()).format("YYYY-MM-DD"));
-  // const [dateEnd, setDateEnd] = useState(moment(storedDateEnd || Date.now()).format("YYYY-MM-DD"));
-
-  // States local storage saving Hook (search state saved on agency list selection)
-  // useEffect(() => {
-  //   // localStorage.setItem("storedAgency", String(agency));
-  //   localStorage.setItem("storedTimeStart", JSON.stringify(timeStart));
-  //   localStorage.setItem("storedTimeEnd", JSON.stringify(timeEnd));
-  //   localStorage.setItem("storedDateStart", String(dateStart));
-  //   localStorage.setItem("storedDateEnd", String(dateEnd));
-
-  //   console.log(agency);
-  //   // console.log(cart.totalPrice);
-  // }, [timeStart, timeEnd, dateStart, dateEnd]);
 
   // Agencies data fetch Hook
   useEffect(() => {
@@ -184,10 +159,7 @@ const SearchComponents = () => {
             {location.pathname === "/" && (
               <button
                 // Check if agency value is known and Date of departure is before Date of return before enabling "go to" offers page button"
-                disabled={
-                  !agency ||
-                  new Date(`${dateStart}T${timeStart.value}:00`) >= new Date(`${dateEnd}T${timeEnd.value}:00`)
-                }
+                disabled={!agency || rentalDays < 1}
                 onClick={() => navigate("/offerlist")}
                 className="offer-btn"
               >
