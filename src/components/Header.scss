@@ -2,20 +2,23 @@
   display: flex;
   justify-content: space-between;
   height: 66px;
+  background-color: var(--clr-light);
 
   img {
     height: 100%;
     padding: 5px 15px 5px 0;
+    z-index: 1;
   }
 
   .center-header {
     display: flex;
-    align-items: center;
-    width: 100%;
+    justify-content: center;
+    flex: 1;
+
     .home {
+      width: 100%;
       display: flex;
       align-items: center;
-      justify-content: center;
 
       span {
         font-family: "Roboto Condensed", sans-serif;
@@ -52,14 +55,11 @@
     .offer {
       display: flex;
       align-items: center;
-      justify-content: center;
-      width: 100%;
-
-      //   flex: 1;
-
+      justify-content: space-evenly;
+      width: 80%;
       div {
-        // border: 2px solid red;
-        margin: 0 40px;
+        // margin: 0 -100px;
+
         display: flex;
         align-items: center;
         color: var(--clr-grey);
@@ -83,8 +83,8 @@
           justify-content: center;
           background-color: var(--clr-lightgrey);
           border-radius: 50%;
-          height: 25px;
-          width: 25px;
+          min-height: 25px;
+          min-width: 25px;
 
           &.ico-bullet-xl {
             font-size: 10px;

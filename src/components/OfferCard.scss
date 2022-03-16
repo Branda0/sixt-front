@@ -1,70 +1,79 @@
 .card {
-  display: flex;
-  flex-direction: column;
+  //   display: flex;
+  //   flex-direction: column;
   //   align-items: center;
-  width: 23%;
+  width: 25%;
   padding: 40px 50px;
-  cursor: pointer;
+  //   border: 2px solid red;
 
-  .title {
-    width: fit-content;
-    background-color: var(--clr-dark);
-    color: var(--clr-primary);
-    font-size: 22px;
-    font-family: "Roboto Condensed", sans-serif;
-    padding: 2px 4px;
-    margin-bottom: 10px;
-  }
-
-  .subtitle {
-    font-family: "Roboto", sans-serif;
-    font-size: 15px;
-  }
-
-  img {
+  .clickable-card {
+    // border: 2px solid green;
     display: flex;
-    width: 80%;
-    transition: transform 200ms ease-in;
-    transform-origin: bottom;
-    padding: 20px 0;
-    transform: scale(1);
+    flex-direction: column;
+    cursor: pointer;
+
+    .title {
+      width: fit-content;
+      background-color: var(--clr-dark);
+      color: var(--clr-primary);
+      font-size: 22px;
+      font-family: "Roboto Condensed", sans-serif;
+      padding: 2px 4px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-family: "Roboto", sans-serif;
+      font-size: 15px;
+    }
+
+    img {
+      display: flex;
+      width: 80%;
+      transition: transform 200ms ease-in;
+      transform-origin: bottom;
+      padding: 20px 0;
+      transform: scale(1);
+    }
 
     &:hover {
-      transform: scale(1.05);
+      img {
+        transform: scale(1.05);
+      }
     }
-  }
 
-  .mileage {
-    margin-bottom: 15px;
-    span {
-      font-size: 17px;
-      font-family: "Roboto", sans-serif;
-      font-weight: 400;
-      color: var(--clr-dark);
+    .mileage {
+      margin-bottom: 15px;
+      span {
+        font-size: 17px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        color: var(--clr-dark);
+      }
+      i {
+        font-size: 12px;
+        margin-right: 15px;
+      }
     }
-    i {
-      font-size: 12px;
-      margin-right: 15px;
-    }
-  }
-
-  .price-day,
-  .price-total,
-  .price-day-big {
-    font-family: "Rokkitt", serif;
-    font-weight: 200;
-    font-size: 15px;
-  }
-  .price {
-    margin-bottom: 10px;
 
     .price-day,
+    .price-total,
     .price-day-big {
-      color: var(--clr-light);
+      font-family: "Rokkitt", serif;
+      font-weight: 200;
+      font-size: 15px;
     }
+    .price {
+      margin-bottom: 10px;
 
-    .price-day-big {
-      font-size: 30px;
+      .price-day,
+      .price-day-big {
+        color: var(--clr-light);
+      }
+
+      .price-day-big {
+        font-size: 30px;
+      }
     }
   }
 }

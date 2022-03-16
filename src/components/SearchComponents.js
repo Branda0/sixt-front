@@ -19,16 +19,19 @@ const SearchComponents = () => {
     monthsShort: "Janv._Févr._Mars_Avr._Mai_Juin_Juil._Août_Sept._Oct._Nov._Déc.".split("_"),
   });
 
-  // States values from context
-  const [search, setSearch] = useContext(SearchContext).search;
-  const [agency, setAgency] = useContext(SearchContext).agency;
-  const [timeStart, setTimeStart] = useContext(SearchContext).timeStart;
-  const [timeEnd, setTimeEnd] = useContext(SearchContext).timeEnd;
-  const [dateStart, setDateStart] = useContext(SearchContext).dateStart;
-  const [dateEnd, setDateEnd] = useContext(SearchContext).dateEnd;
+  // Get data from Context
+  const data = useContext(SearchContext);
 
-  // number of rental days (from context)
-  const rentalDays = useContext(SearchContext).rentalDays;
+  // States values from Context
+  const [search, setSearch] = data.search;
+  const [agency, setAgency] = data.agency;
+  const [timeStart, setTimeStart] = data.timeStart;
+  const [timeEnd, setTimeEnd] = data.timeEnd;
+  const [dateStart, setDateStart] = data.dateStart;
+  const [dateEnd, setDateEnd] = data.dateEnd;
+
+  // number of rental days (from context) if  value < 0 then departure date is temporaly after return date
+  const rentalDays = data.rentalDays;
 
   // Search engine selection Modals pop-up states
   const [searchModal, setSearchModal] = useState(false);
@@ -55,7 +58,7 @@ const SearchComponents = () => {
         fetchData();
       } else {
         setAgenciesData(null);
-        setAgency(null);
+        // setAgency(null);
         setSearchModal(false);
         setIsLoading(true);
       }
@@ -188,7 +191,7 @@ const SearchComponents = () => {
           )}
           {dateModal && (
             <div className="date-picker">
-              <DateRange setDateStart={setDateStart} setDateEnd={setDateEnd} setDateModal={setDateModal} />
+              <DateRange setDateModal={setDateModal} />
             </div>
           )}
           {startTimeModal && (

@@ -11,14 +11,14 @@ import CarouselHome from "../components/CarouselHome";
 import DateRange from "../components/DateRange";
 import TimeSelector from "../components/TimeSelector";
 
-const Home = () => {
+const Home = ({ setSelectModal, selectModal }) => {
   const [modal, setModal] = useState(false);
 
   return (
-    <div className={`home-container ${modal && "modal-open"}`}>
+    <div className={`home-container`}>
       <SearchComponents />
 
-      {modal && <Modal setModal={setModal} />}
+      {selectModal && <Modal setSelectModal={!selectModal} />}
       {/* <i className="ico-estate" /> */}
 
       {/* <Link className={`test ${disabled && "disabled"} `} to="/offerlist">
@@ -41,7 +41,7 @@ const Home = () => {
       />
       <TimeSelector indexSelected={timeStart.index} setTime={setTimeStart} /> */}
 
-      <button onClick={() => setModal(true)}>MODAL</button>
+      <button onClick={() => setSelectModal(true)}>MODAL</button>
     </div>
   );
 };

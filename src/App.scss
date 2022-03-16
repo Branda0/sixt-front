@@ -16,18 +16,17 @@ body {
   --max-width: 1600px;
 }
 
-i {
-  font-size: 60px;
-}
-
-span {
-  // font-family: "Rokkitt", sans-serif;
-}
 .App-container {
   max-width: var(--max-width);
   margin: 0 auto;
   height: 100vh;
   background-color: white;
+
+  &.modal {
+    position: fixed;
+    border: 2px solid green;
+    // overflow: hidden;
+  }
 
   &::-webkit-scrollbar {
     width: 5px;

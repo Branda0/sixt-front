@@ -14,7 +14,9 @@ const Modal = ({ setModal }) => {
           // e.stopImmediatePropagation();
         }}
       >
-        <span>I'M THE MODAL</span>
+        <div className="container">
+          <span>I'M THE MODAL</span>
+        </div>
       </div>
     </div>
   );

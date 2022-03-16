@@ -1,6 +1,7 @@
 .offers-container {
   background-color: var(--clr-primary);
   min-height: 80vh;
+  color: var(--clr-dark);
 
   .filter-bar {
     display: flex;
@@ -72,6 +73,12 @@
         color: var(--clr-lightgrey);
         padding-bottom: 15px;
         padding-right: 15px;
+        cursor: not-allowed;
+
+        &.active {
+          cursor: pointer;
+          color: var(--clr-dark);
+        }
 
         &:disabled {
           display: none;
@@ -85,15 +92,41 @@
       .type-filter-modal {
         // border: 2px solid red;
         width: 100%;
-        height: 200px;
+        // height: 200px;
         background-color: var(--clr-light);
         position: absolute;
         top: 100%;
         left: 0;
-        padding: 15px 10px;
+        padding: 15px 15px;
 
-        .filters {
+        .styles {
+          display: flex;
+          flex-direction: column;
           border-top: 1px solid var(--clr-lightgrey);
+          padding-top: 15px;
+
+          .style-line {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .checkbox-title {
+              display: flex;
+              align-items: center;
+              i {
+                font-size: 25px;
+                margin-right: 10px;
+              }
+              span {
+                font-size: 17px;
+                font-weight: 700;
+              }
+            }
+
+            i {
+              font-size: 40px;
+            }
+          }
         }
       }
     }
@@ -102,6 +135,5 @@
   .cards-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
   }
 }

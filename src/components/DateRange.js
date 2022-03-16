@@ -1,5 +1,7 @@
+import { useState, useEffect, useContext } from "react";
+import { SearchContext } from "../context/SearchContext";
+
 import moment from "moment";
-import { useState, useEffect } from "react";
 import DateRangePicker from "react-daterange-picker";
 import "react-daterange-picker/dist/css/react-calendar.css";
 import "./DateRange.scss";
@@ -8,19 +10,14 @@ import "./DateRange.scss";
 
 // import Arrow from "./Arrow";
 
-const DateRange = ({ setDateStart, setDateEnd, setDateModal }) => {
-  //   const today = new Date(2022, 2, 13);
-  //   const today2 = new Date("2022-03-13T00:00:00");
-  //   console.log(today);
-  //   console.log(today2);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  //   const today = Date("2022-03-13");
-  const dateTest2 = new Date(2022, 2, 17);
-  // const [dates, setDates] = useState(moment.range(moment(today), moment(today)));
-  const [dates, setDates] = useState(moment.range(moment(today), moment(today)));
-  //   const [dates, setDates] = useState(null);
-  //   const dateTest = new Date(2022, 3, 15);
+const DateRange = ({ setDateModal }) => {
+  // Dates states values from context
+  const [dateStart, setDateStart] = useContext(SearchContext).dateStart;
+  const [dateEnd, setDateEnd] = useContext(SearchContext).dateEnd;
+
+  // apply stored dates whenever we open calendar again
+  const [dates, setDates] = useState(moment.range(dateStart, dateEnd));
+
   useEffect(() => {
     setDateStart(dates?.start?.format("YYYY-MM-DD"));
     setDateEnd(dates?.end?.format("YYYY-MM-DD"));
@@ -30,17 +27,8 @@ const DateRange = ({ setDateStart, setDateEnd, setDateModal }) => {
     months: "janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre"
       .toUpperCase()
       .split("_"),
-    // monthsParseExact: true,
+
     weekdaysShort: "DI_LU_MA_ME_JE_VE_SA".split("_"),
-    // weekdaysParseExact: true,
-    longDateFormat: {
-      LT: "HH:mm",
-      LTS: "HH:mm:ss",
-      L: "DD/MM/YYYY",
-      LL: "D MMMM YYYY",
-      LLL: "D MMMM YYYY HH:mm",
-      LLLL: "dddd D MMMM YYYY HH:mm",
-    },
   });
 
   const onSelect = (dates) => {
