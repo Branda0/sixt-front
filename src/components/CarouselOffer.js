@@ -3,10 +3,10 @@ import imgCarousel2 from "../assets/img/carousel/carousel2.jpeg";
 import imgCarousel3 from "../assets/img/carousel/carousel3.jpeg";
 
 import Carousel from "react-multi-carousel";
-import "./CarouselHome.scss";
+import "./CarouselOffer.scss";
 import "react-multi-carousel/lib/styles.css";
 
-const CarouselHome = () => {
+const CarouselOffer = () => {
   const responsiveCarousel = {
     device: {
       breakpoint: { max: 3000, min: 0 },
@@ -17,13 +17,14 @@ const CarouselHome = () => {
     <Carousel
       autoPlay={true}
       autoPlaySpeed={4000}
-      className="carousel-home"
+      className="carousel-offer"
       // containerClass="carousel-container"
       // itemClass="item-class"
       dotListClass="dotList"
       infinite
       showDots
       responsive={responsiveCarousel}
+      disabled={true}
     >
       <img src={imgCarousel1} />
       <img src={imgCarousel2} />
@@ -32,4 +33,4 @@ const CarouselHome = () => {
   );
 };
 
-export default CarouselHome;
+export default CarouselOffer;

@@ -8,7 +8,6 @@ import moment from "moment";
 
 import "./SearchComponents.scss";
 
-import Modal from "./Modal";
 import DateRange from "./DateRange";
 import TimeSelector from "./TimeSelector";
 

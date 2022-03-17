@@ -12,6 +12,7 @@ import { useState } from "react";
 //pages
 import Home from "./pages/Home";
 import OfferList from "./pages/OfferList";
+import OfferConfig from "./pages/OfferConfig";
 
 //components
 import Header from "./components/Header";
@@ -21,23 +22,25 @@ function App() {
   const [selectModal, setSelectModal] = useState(false);
 
   return (
-    <SearchProvider>
-      <Router>
-        <div className={`App-container ${selectModal && "modal"}`}>
-          <Header />
+    <Router>
+      <div className={`App-container ${selectModal && "modal"}`}>
+        <Header />
+        <SearchProvider>
           <Routes>
             <Route path="/" element={<Home />} />
+
             <Route
               path="/offerlist"
               element={<OfferList selectModal={selectModal} setSelectModal={setSelectModal} />}
             />
-            {/* // <Route path="/offerconfig" element={<OfferConfig />} />
-        // <Route path="/personnaldetails" element={<PersonnalDetails />} />
-        // <Route path="/backoffice" element={<BackOffice />} /> */}
+
+            <Route path="/offerconfig" element={<OfferConfig />} />
+            {/* <Route path="/personnaldetails" element={<PersonnalDetails />} />
+        <Route path="/backoffice" element={<BackOffice />} />  */}
           </Routes>
-        </div>
-      </Router>
-    </SearchProvider>
+        </SearchProvider>
+      </div>
+    </Router>
   );
 }
 

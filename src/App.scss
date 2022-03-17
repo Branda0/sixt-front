@@ -20,7 +20,7 @@ body {
   max-width: var(--max-width);
   margin: 0 auto;
   height: 100vh;
-  background-color: white;
+  // background-color: var(--clr-primary);
 
   &.modal {
     position: fixed;
