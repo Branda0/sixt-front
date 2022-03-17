@@ -56,8 +56,8 @@ const SearchComponents = () => {
       if (search.length >= 3) {
         fetchData();
       } else {
-        setAgenciesData(null);
-        // setAgency(null);
+        // setAgenciesData(null);
+        if (location.pathname === "/") setAgency(null);
         setSearchModal(false);
         setIsLoading(true);
       }
@@ -161,7 +161,7 @@ const SearchComponents = () => {
             {location.pathname === "/" && (
               <button
                 // Check if agency value is known and Date of departure is before Date of return before enabling "go to" offers page button"
-                disabled={!agency || rentalDays < 1}
+                disabled={!agency || rentalDays < 1 || !search}
                 onClick={() => navigate("/offerlist")}
                 className="offer-btn"
               >

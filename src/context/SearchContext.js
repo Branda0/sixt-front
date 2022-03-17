@@ -15,7 +15,7 @@ export const SearchProvider = (props) => {
 
   //Search engine states
   const [search, setSearch] = useState(storedSearch || "");
-  const [agency, setAgency] = useState(storedAgency || {});
+  const [agency, setAgency] = useState(storedAgency || null);
   const [timeStart, setTimeStart] = useState(storedTimeStart || { value: timeTable[2], index: 2 });
   const [timeEnd, setTimeEnd] = useState(storedTimeEnd || { value: timeTable[16], index: 16 });
   const [dateStart, setDateStart] = useState(storedDateStart || moment(Date.now()).format("YYYY-MM-DD"));
