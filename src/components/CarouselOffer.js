@@ -6,7 +6,8 @@ import Carousel from "react-multi-carousel";
 import "./CarouselOffer.scss";
 import "react-multi-carousel/lib/styles.css";
 
-const CarouselOffer = () => {
+const CarouselOffer = ({ images }) => {
+  console.log("data = ", images);
   const responsiveCarousel = {
     device: {
       breakpoint: { max: 3000, min: 0 },
@@ -14,22 +15,23 @@ const CarouselOffer = () => {
     },
   };
   return (
-    <Carousel
-      autoPlay={true}
-      autoPlaySpeed={4000}
-      className="carousel-offer"
-      // containerClass="carousel-container"
-      // itemClass="item-class"
-      dotListClass="dotList"
-      infinite
-      showDots
-      responsive={responsiveCarousel}
-      disabled={true}
-    >
-      <img src={imgCarousel1} />
-      <img src={imgCarousel2} />
-      <img src={imgCarousel3} />
-    </Carousel>
+    <div className="container-carousel">
+      <Carousel
+        autoPlay={true}
+        autoPlaySpeed={4000}
+        itemClass="item-class"
+        dotListClass="dotList"
+        infinite={images.length > 1}
+        arrows={images.length > 1}
+        // showDots={images.length > 1}
+        showDots={true}
+        responsive={responsiveCarousel}
+      >
+        {images.map((image, index) => {
+          return <img key={index} src={image} alt={"car-carousel"} />;
+        })}
+      </Carousel>
+    </div>
   );
 };
 

@@ -29,7 +29,6 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
         const response = await axios.get(`http://localhost:4000/offer/configurations?offerId=${offer.id}`);
         setConfigurationData(response.data);
         setIsLoading(false);
-        console.log(response.data.splashImages);
       };
 
       fetchData();
@@ -48,7 +47,7 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
         }}
       >
         <div className="carousel-select-modal">
-          {isLoading ? <span>loading</span> : <CarouselOffer />}
+          {isLoading ? <span>loading</span> : <CarouselOffer images={configurationData.splashImages} />}
           <div className="offer-info">
             <span className="long-title">{offer.headlines.longSubline}</span>
             <div className="details">
@@ -94,7 +93,7 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
             className="to-offerconfig-btn"
             onClick={() => {
               setSelectModal(false);
-              navigate("/offerconfig");
+              navigate("/offerconfig", { state: { offer, rentalDays } });
             }}
           >
             SÉLECTIONNER

@@ -16,15 +16,21 @@
 //   }
 // }
 
-.carousel-offer {
+.container-carousel {
   width: 100%;
 
   img {
     width: 100%;
+
+    filter: brightness(90%);
   }
 
   .dotList {
-    padding-bottom: 10px;
-    height: 6%;
+    padding-bottom: 20px;
+
+    .react-multi-carousel-dot--active {
+      // à voir pour styliser dot actif du carousel
+      // border: 2px solid green;
+    }
   }
 }
