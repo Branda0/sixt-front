@@ -15,6 +15,7 @@ body {
   --clr-light: #ffffff;
   --max-width: 1600px;
   --header-height: 66px;
+  --footer-height: 60px;
   --modal-scroll-pos: 0px;
 }
 
@@ -23,9 +24,8 @@ body {
   margin: 0 auto;
 
   color: var(--clr-dark);
-  // height: fit-content;
-  background-color: var(--clr-primary);
-
+  // background-color: var(--clr-light);
+  background-color: transparent;
   &::-webkit-scrollbar {
     width: 5px;
   }

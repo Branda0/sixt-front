@@ -46,8 +46,6 @@ const OfferConfig = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [extraFees, setExtraFees] = useState(0);
 
-  // const totalPrice = 3;
-  // const extrafees =
   useEffect(() => {
     const computeTotal = () => {
       let optionsPrice = 0;
@@ -63,7 +61,6 @@ const OfferConfig = () => {
       });
 
       const rentalPrice = offer.prices.dayPrice.amount * rentalDays;
-      const test = configurationData.additionalCharges[1].price.amount;
       const total = rentalPrice + optionsPrice;
       setTotalPrice(total);
     };
@@ -198,7 +195,7 @@ const OfferConfig = () => {
                 <Link
                   className="toPersonnalDetails-btn"
                   to="/personnaldetails"
-                  state={{ from: "occupation" }}
+                  state={{ offer, configurationData, totalPrice, extraFees }}
                 >
                   CONTINUER
                 </Link>

@@ -1,0 +1,29 @@
+.personnaldetails-container {
+  background-color: var(--clr-light);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  max-width: 1024px;
+  margin: 0 auto;
+  border: 2px solid red;
+
+  .gender {
+    display: flex;
+    align-items: center;
+    form {
+      display: flex;
+
+      .input-row {
+        .left-row {
+          height: 300px;
+          border: 2px solid red;
+          width: 50%;
+        }
+
+        .right {
+          height: 300px;
+          width: 50%;
+          border: 2px solid green;
+        }
+      }
+    }
+  }
+}

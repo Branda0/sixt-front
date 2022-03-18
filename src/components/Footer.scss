@@ -1,0 +1,14 @@
+.footer {
+  background-color: var(--clr-dark);
+  height: var(--footer-height);
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+  span {
+    text-transform: uppercase;
+    margin-right: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--clr-light);
+  }
+}

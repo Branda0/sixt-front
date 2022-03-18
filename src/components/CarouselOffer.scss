@@ -1,36 +1,17 @@
-// .carousel-offer {
-//   // z-index: 1;
-//   width: 100%;
-//   overflow: hidden;
-
-//   img {
-//     display: block;
-//     height: 100%;
-//     margin: auto;
-//     width: 100%;
-//   }
-
-//   .dotList {
-//     padding-bottom: 10px;
-//     height: 6%;
-//   }
-// }
-
 .container-carousel {
   width: 100%;
 
   img {
     width: 100%;
-
     filter: brightness(90%);
   }
 
   .dotList {
     padding-bottom: 20px;
 
-    .react-multi-carousel-dot--active {
-      // à voir pour styliser dot actif du carousel
-      // border: 2px solid green;
-    }
+    // .react-multi-carousel-dot--active {
+    //   // à voir pour styliser dot actif du carousel
+    //   // border: 2px solid green;
+    // }
   }
 }

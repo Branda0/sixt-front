@@ -13,10 +13,10 @@ const PriceDetails = ({ offer, title, rentalDays, configurationData, totalPrice,
         <span className="price">{realDayPrice.toFixed(2)}</span>
       </div>
       <span className="title">protections et options</span>
-      {configurationData.additionalCharges.map((element) => {
+      {configurationData.additionalCharges.map((element, index) => {
         if (element.amount === 1) {
           return (
-            <div className="line-detail">
+            <div key={index} className="line-detail">
               <span className="details">{element.title}</span>
               <span className="price">
                 {element.price.unit.includes("jour")
@@ -28,9 +28,9 @@ const PriceDetails = ({ offer, title, rentalDays, configurationData, totalPrice,
         }
       })}
       <span className="title">frais</span>
-      {configurationData.extraFees.map((element) => {
+      {configurationData.extraFees.map((element, index) => {
         return (
-          <div className="line-detail">
+          <div key={index} className="line-detail">
             <span className="details">{element.title}</span>
             <span className="price">{element.price.amount}</span>
           </div>

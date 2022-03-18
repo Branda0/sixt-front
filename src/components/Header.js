@@ -31,8 +31,8 @@ const Header = () => {
             >
               <i
                 className={
-                  location.pathname === "/offerconfig" ||
-                  (location.pathname === "/personnaldetails" && "ico-bullet-xl")
+                  (location.pathname === "/offerconfig" || location.pathname === "/personnaldetails") &&
+                  "ico-bullet-xl"
                 }
               >
                 {location.pathname === "/offerconfig" || location.pathname === "/personnaldetails" ? "" : "1"}

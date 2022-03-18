@@ -17,13 +17,14 @@ import PersonnalDetails from "./pages/PersonnalDetails";
 
 //components
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   // modal states
 
   return (
-    <div className="App-container">
-      <Router>
+    <Router>
+      <div className="App-container">
         <Header />
         <SearchProvider>
           <Routes>
@@ -34,8 +35,9 @@ function App() {
             {/* <Route path="/backoffice" element={<BackOffice />} /> */}
           </Routes>
         </SearchProvider>
-      </Router>
-    </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
