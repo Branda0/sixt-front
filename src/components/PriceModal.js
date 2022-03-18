@@ -1,8 +1,24 @@
 import "./PriceModal.scss";
+import PriceDetails from "./PriceDetails";
 
-const PriceModal = ({ setPriceDetailModal, offer, rentalDays, configurationData }) => {
+const PriceModal = ({
+  priceDetailModal,
+  setPriceDetailModal,
+  offer,
+  rentalDays,
+  configurationData,
+  totalPrice,
+  extraFees,
+  setIsImgResized,
+}) => {
   return (
-    <div className="modal-frame" onClick={() => setPriceDetailModal(false)}>
+    <div
+      className="modal-price"
+      onClick={() => {
+        setPriceDetailModal(false);
+        setIsImgResized(false);
+      }}
+    >
       <div
         className="container"
         onClick={(event) => {
@@ -11,7 +27,21 @@ const PriceModal = ({ setPriceDetailModal, offer, rentalDays, configurationData 
         }}
       >
         <div className="content">
-          <span>TEST</span>
+          <PriceDetails
+            title={"détails du prix"}
+            offer={offer}
+            rentalDays={rentalDays}
+            configurationData={configurationData}
+            totalPrice={totalPrice}
+            extraFees={extraFees}
+          />
+          <i
+            className="ico-close"
+            onClick={() => {
+              setPriceDetailModal(!priceDetailModal);
+              setIsImgResized(false);
+            }}
+          ></i>
         </div>
       </div>
     </div>

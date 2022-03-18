@@ -206,10 +206,10 @@ const OfferList = () => {
                       <div
                         className="clickable-area"
                         onClick={() => {
-                          document.documentElement.style.setProperty(
-                            "--modal-scroll-pos",
-                            `${window.scrollY}px`
-                          );
+                          // document.documentElement.style.setProperty(
+                          //   "--modal-scroll-pos",
+                          //   `${window.scrollY}px`
+                          // );
                           setSelectModal(true);
                           setSelectedOffer(offer);
                         }}

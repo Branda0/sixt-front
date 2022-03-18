@@ -29,8 +29,13 @@ const Header = () => {
                 "color-status"
               }
             >
-              <i className={location.pathname === "/offerconfig" && "ico-bullet-xl"}>
-                {location.pathname === "/offerconfig" ? "" : "1"}
+              <i
+                className={
+                  location.pathname === "/offerconfig" ||
+                  (location.pathname === "/personnaldetails" && "ico-bullet-xl")
+                }
+              >
+                {location.pathname === "/offerconfig" || location.pathname === "/personnaldetails" ? "" : "1"}
               </i>
               <span>SÉLECTION DES VÉHICULES</span>
             </div>

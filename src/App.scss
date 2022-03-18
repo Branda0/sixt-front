@@ -26,12 +26,6 @@ body {
   // height: fit-content;
   background-color: var(--clr-primary);
 
-  &.modal {
-    // bottom: 0;
-    // overflow: hidden;
-    // margin: 0 auto;
-  }
-
   &::-webkit-scrollbar {
     width: 5px;
   }

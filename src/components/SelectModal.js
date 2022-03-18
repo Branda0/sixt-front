@@ -37,7 +37,7 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
   }, [offer.id]);
 
   return (
-    <div className="modal-frame" onClick={() => setSelectModal(false)}>
+    <div className="modal-select" onClick={() => setSelectModal(false)}>
       <div
         className="container"
         onClick={(event) => {

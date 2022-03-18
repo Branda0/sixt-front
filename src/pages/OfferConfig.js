@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 import { SearchContext } from "../context/SearchContext";
@@ -104,10 +104,14 @@ const OfferConfig = () => {
         <>
           {priceDetailModal && (
             <PriceModal
+              priceDetailModal={priceDetailModal}
               setPriceDetailModal={setPriceDetailModal}
               offer={offer}
-              rentalDays={rentalDays}
               configurationData={configurationData}
+              rentalDays={rentalDays}
+              totalPrice={totalPrice}
+              extraFees={extraFees}
+              setIsImgResized={setIsImgResized}
             />
           )}
           <div className="top-img-container">
@@ -171,11 +175,12 @@ const OfferConfig = () => {
                     <div
                       className="link-modal"
                       onClick={() => {
-                        console.log(window.scrollY);
-                        document.documentElement.style.setProperty(
-                          "--modal-scroll-pos",
-                          `${window.scrollY}px`
-                        );
+                        // console.log(window.scrollY);
+                        // document.documentElement.style.setProperty(
+                        //   "--modal-scroll-pos",
+                        //   `${window.scrollY}px`
+                        // );
+                        setIsImgResized(true);
                         setPriceDetailModal(!priceDetailModal);
                       }}
                     >
@@ -190,7 +195,14 @@ const OfferConfig = () => {
                   </div>
                 </div>
 
-                <button>CONTINUER</button>
+                <Link
+                  className="toPersonnalDetails-btn"
+                  to="/personnaldetails"
+                  state={{ from: "occupation" }}
+                >
+                  CONTINUER
+                </Link>
+                {/* <button o></button> */}
               </div>
             </div>
           </div>
