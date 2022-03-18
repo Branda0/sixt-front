@@ -49,33 +49,6 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
           {isLoading ? <span>loading</span> : <CarouselOffer images={configurationData.splashImages} />}
           <div className="offer-info">
             <InfosDetail offer={offer} />
-            {/* <span className="long-title">{offer.headlines.longSubline}</span>
-            <div className="details">
-              <div className="info">
-                <i className="ico-maxPassengers"></i>
-                <span>{offer.carGroupInfo.maxPassengers} Sièges</span>
-              </div>
-              <div className="info">
-                <i className="ico-doors"></i>
-                <span>{offer.carGroupInfo.doors} Portes</span>
-              </div>
-              <div className="info">
-                <i className="ico-automatic"></i>
-                <span>{offer.carGroupInfo.automatic ? "Automatique" : "Manuelle"}</span>
-              </div>
-              <div className="info">
-                <i className="ico-baggage"></i>
-                <span>{offer.carGroupInfo.baggage} Bagages</span>
-              </div>
-              <div className="info">
-                <i className="ico-airCondition"></i>
-                <span>{offer.carGroupInfo.airCondition ? "Climatisation" : "Non-climatisée"}</span>
-              </div>
-              <div className="info">
-                <i className="ico-driverRequirements"></i>
-                <span>{offer.carGroupInfo.driverMinAge} Ans</span>
-              </div>
-            </div> */}
           </div>
         </div>
         <div className="right">
@@ -88,7 +61,6 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
               <span className="price-day">,{(toTalPrice % 1).toFixed(2).substring(2)}</span>
             </div>
           </div>
-
           <button
             className="to-offerconfig-btn"
             onClick={() => {

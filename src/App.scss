@@ -14,6 +14,8 @@ body {
   --clr-grey: #969696;
   --clr-light: #ffffff;
   --max-width: 1600px;
+  --header-height: 66px;
+  --modal-scroll-pos: 0px;
 }
 
 .App-container {
@@ -26,7 +28,7 @@ body {
 
   &.modal {
     // bottom: 0;
-    overflow: hidden;
+    // overflow: hidden;
     // margin: 0 auto;
   }
 

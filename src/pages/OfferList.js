@@ -140,6 +140,9 @@ const OfferList = () => {
         <span>Loading</span>
       ) : (
         <div className="offers-container">
+          {selectModal && (
+            <SelectModal setSelectModal={setSelectModal} offer={selectedOffer} rentalDays={rentalDays} />
+          )}
           <div className="filter-bar">
             <section className="offers-count">
               <div>
@@ -203,6 +206,10 @@ const OfferList = () => {
                       <div
                         className="clickable-area"
                         onClick={() => {
+                          document.documentElement.style.setProperty(
+                            "--modal-scroll-pos",
+                            `${window.scrollY}px`
+                          );
                           setSelectModal(true);
                           setSelectedOffer(offer);
                         }}
@@ -216,9 +223,6 @@ const OfferList = () => {
               </div>
             )}
           </div>
-          {selectModal && (
-            <SelectModal setSelectModal={setSelectModal} offer={selectedOffer} rentalDays={rentalDays} />
-          )}
         </div>
       )}
     </div>

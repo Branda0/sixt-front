@@ -1,5 +1,6 @@
 .offerconfig-container {
   display: flex;
+  background-color: var(--clr-primary);
   flex-direction: column;
   .top-img-container {
     border: none;
@@ -96,10 +97,6 @@
     padding: 30px 50px;
     display: flex;
 
-    // 38px condensed
-    // 23px condensed
-    // 17 roboto
-
     .options {
       display: flex;
       flex-direction: column;
@@ -122,9 +119,15 @@
         display: flex;
         margin: 20px 0;
         .charge-line {
-          margin: 0 40px 10px 0;
+          align-items: center;
+          display: flex;
+          max-width: 50%;
+          min-width: 200px;
+          flex: 1 0 50%;
+          padding-right: 20px;
+          margin-bottom: 10px;
           i {
-            font-size: 14px;
+            font-size: 12px;
             margin-right: 10px;
           }
         }
@@ -171,35 +174,63 @@
       top: 30px;
       margin-left: 30px;
       flex: 2;
-      border: 2px solid red;
 
       .container {
-        // color: var(--clr-dark);
-        // color: red;
         display: flex;
         flex-direction: column;
         max-width: 400px;
         width: 100%;
-        border: 2px solid green;
 
         & > div {
           display: flex;
           justify-content: space-between;
-          border: 2px solid violet;
+          margin-bottom: 10px;
+          .left {
+            display: flex;
+            flex-direction: column;
+            align-self: flex-end;
+
+            & > span {
+              font-size: 15px;
+              font-weight: 700;
+              margin-bottom: 10px;
+            }
+
+            .link-modal {
+              color: var(--clr-light);
+              display: flex;
+              align-items: center;
+              cursor: pointer;
+
+              i {
+                font-size: 11px;
+                margin-right: 10px;
+                transform: rotate(0deg);
+                transition: transform 0.3s ease-in;
+
+                &.modal {
+                  transform: rotate(90deg);
+                }
+              }
+              span {
+                font-family: "Roboto", sans-serif;
+                font-size: 13px;
+              }
+            }
+          }
 
           .total-price {
             color: var(--clr-light);
             font-family: "Rokkitt", sans-serif;
             position: relative;
-            margin-bottom: 20px;
+            padding-bottom: 5px;
             font-size: 55px;
+
             .small {
               font-size: 30px;
             }
-            // border: 2px solid green;
-            // align-self: center;
             &:after {
-              top: 100%;
+              bottom: 0;
               right: 0;
               position: absolute;
               font-family: "Roboto", sans-serif;
@@ -217,8 +248,17 @@
         font-size: 18px;
         font-weight: 700;
         width: 100%;
-        padding: 10px;
+        padding: 15px;
+        cursor: pointer;
       }
     }
+  }
+
+  &.modal {
+    border: 2px solid red;
+    position: fixed;
+    // top: var(--modal-scroll-pos);
+    // top: calcl(var(--modal-scroll-pos) + var(--header-height));
+    // left: 0;
   }
 }

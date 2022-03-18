@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { SearchContext } from "../context/SearchContext";
@@ -9,38 +9,83 @@ import "./OfferConfig.scss";
 import SearchComponents from "../components/SearchComponents";
 import InfosDetail from "../components/InfosDetail";
 import OptionCard from "../components/OptionCard";
+import PriceModal from "../components/PriceModal";
 
 const OfferConfig = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
-  const offer = state.offer;
+
+  /////
+  /////
+  /////
+  // if (state === null) navigate("/");
+  /////
+  /////
+  /////
+  let offer = null;
+  if (state) {
+    offer = state.offer;
+  }
 
   // Get data from Context
   const data = useContext(SearchContext);
 
-  // States values from Context
-  const [search, setSearch] = data.search;
-  const [agency, setAgency] = data.agency;
-  const [timeStart, setTimeStart] = data.timeStart;
-  const [timeEnd, setTimeEnd] = data.timeEnd;
-  const [dateStart, setDateStart] = data.dateStart;
-  const [dateEnd, setDateEnd] = data.dateEnd;
-
-  // number of rental days (from context) if  value < 0 then departure date is temporaly after return date
+  // number of rental days (from context)
   const rentalDays = data.rentalDays;
 
-  const [configurationData, setConfigurationData] = useState({});
+  // configuration data from api call
+  const [configurationData, setConfigurationData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  // boolean states values used for conditional page visual
   const [isImgResized, setIsImgResized] = useState(false);
   const [moreOptions, setMoreOptions] = useState(false);
+  const [priceDetailModal, setPriceDetailModal] = useState(false);
 
-  const totalPrice = 1279.46;
+  //compute total Price
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [extraFees, setExtraFees] = useState(0);
+
+  // const totalPrice = 3;
+  // const extrafees =
+  useEffect(() => {
+    const computeTotal = () => {
+      let optionsPrice = 0;
+      console.log(configurationData.additionalCharges[2].price);
+      configurationData.additionalCharges.forEach((element) => {
+        if (element.amount === 1) {
+          if (element.price.unit.includes("jour")) {
+            optionsPrice += rentalDays * element.price.amount;
+          } else {
+            optionsPrice += element.price.amount;
+          }
+        }
+      });
+
+      const rentalPrice = offer.prices.dayPrice.amount * rentalDays;
+      const test = configurationData.additionalCharges[1].price.amount;
+      const total = rentalPrice + optionsPrice;
+      setTotalPrice(total);
+    };
+    if (configurationData) computeTotal();
+  }, [configurationData, rentalDays]);
 
   // data fetch Hook to get offer configuration details
   useEffect(() => {
     try {
+      // get extraFees from inital fetchData as this are static fees that  will not change with options selection
+      const computeExtraFees = (configData) => {
+        let fees = 0;
+        configData.extraFees.forEach((element) => {
+          fees += element.price.amount;
+        });
+        setExtraFees(fees);
+      };
+
       const fetchData = async () => {
         const response = await axios.get(`http://localhost:4000/offer/configurations?offerId=${offer.id}`);
         setConfigurationData(response.data);
+        computeExtraFees(response.data);
         setIsLoading(false);
       };
 
@@ -49,14 +94,22 @@ const OfferConfig = () => {
       console.log({ error: error.message });
     }
   }, [offer.id]);
-  //location.state.offer / .rentalDays
-  return (
-    <div className="offerconfig-container">
+
+  return offer ? (
+    <div className={`offerconfig-container ${priceDetailModal && "modal"}`}>
       <SearchComponents />
       {isLoading ? (
         <span>Loading</span>
       ) : (
         <>
+          {priceDetailModal && (
+            <PriceModal
+              setPriceDetailModal={setPriceDetailModal}
+              offer={offer}
+              rentalDays={rentalDays}
+              configurationData={configurationData}
+            />
+          )}
           <div className="top-img-container">
             <img
               className={`${isImgResized && "resized"}`}
@@ -111,12 +164,22 @@ const OfferConfig = () => {
               </div>
             </div>
             <div className="pricing">
-              <div className={"container"}>
+              <div className="container">
                 <div>
                   <div className="left">
                     <span>TOTAL</span>
-                    <div className="link-modal">
-                      <i className="ico-chevron-right"></i>
+                    <div
+                      className="link-modal"
+                      onClick={() => {
+                        console.log(window.scrollY);
+                        document.documentElement.style.setProperty(
+                          "--modal-scroll-pos",
+                          `${window.scrollY}px`
+                        );
+                        setPriceDetailModal(!priceDetailModal);
+                      }}
+                    >
+                      <i className={`ico-chevron-right ${priceDetailModal && "modal"}`}></i>
                       <span>Détails du prix</span>
                     </div>
                   </div>
@@ -134,6 +197,8 @@ const OfferConfig = () => {
         </>
       )}
     </div>
+  ) : (
+    <Navigate to="/" />
   );
 };
 

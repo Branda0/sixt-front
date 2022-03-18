@@ -1,7 +1,7 @@
 .header-container {
   display: flex;
   justify-content: space-between;
-  height: 66px;
+  height: var(--header-height);
   background-color: var(--clr-light);
 
   img {

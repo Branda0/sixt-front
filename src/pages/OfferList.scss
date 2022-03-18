@@ -157,5 +157,7 @@
 
   &.modal {
     position: fixed;
+    // top: var(--modal-scroll-pos);
+    // left: 0;
   }
 }
