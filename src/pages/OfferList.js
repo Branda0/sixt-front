@@ -134,12 +134,12 @@ const OfferList = () => {
   }, [agency, timeStart, timeEnd, dateStart, dateEnd, rentalDays]);
 
   return (
-    <div className={`container-offerlist ${selectModal && "modal"}`}>
+    <div className={`offerlist-container ${selectModal && "modal"}`}>
       <SearchComponents />
       {isLoading ? (
         <span>Loading</span>
       ) : (
-        <div className="offers-container">
+        <>
           {selectModal && (
             <SelectModal setSelectModal={setSelectModal} offer={selectedOffer} rentalDays={rentalDays} />
           )}
@@ -223,7 +223,7 @@ const OfferList = () => {
               </div>
             )}
           </div>
-        </div>
+        </>
       )}
     </div>
   );

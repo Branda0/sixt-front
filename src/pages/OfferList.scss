@@ -1,153 +1,132 @@
-.container-offerlist {
+// .container-offerlist {
+.offerlist-container {
   max-width: var(--max-width);
+  background-color: var(--clr-primary);
+  min-height: 80vh;
+  color: var(--clr-dark);
 
-  .offers-container {
-    background-color: var(--clr-primary);
-    min-height: 80vh;
-    color: var(--clr-dark);
+  .filter-bar {
+    display: flex;
+    padding: 15px 50px;
+    border-bottom: 1px solid var(--clr-dark);
 
-    .filter-bar {
+    section {
+      padding-left: 15px;
+      min-width: 200px;
       display: flex;
-      padding: 15px 50px;
-      border-bottom: 1px solid var(--clr-dark);
+      align-items: center;
+    }
+    span {
+      padding: 10px 0;
+      font-family: "Roboto Condensed", sans-serif;
+      font-size: 15px;
+      line-height: 23px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
 
-      section {
-        padding-left: 15px;
-        min-width: 200px;
-        display: flex;
-        align-items: center;
-      }
-      span {
-        padding: 10px 0;
-        font-family: "Roboto Condensed", sans-serif;
-        font-size: 15px;
-        line-height: 23px;
-        font-weight: 700;
-        letter-spacing: 0.4px;
-      }
+    .offers-count {
+      min-height: 50px;
+      display: flex;
+      margin-right: 10px;
 
-      .offers-count {
-        min-height: 50px;
-        display: flex;
-        margin-right: 10px;
-
-        .count {
-          margin-right: 3px;
-          font-size: 24px;
-        }
-      }
-
-      .offers-filter {
-        z-index: 1;
-        position: relative;
-        min-height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .modal-control {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          height: 100%;
-          width: 190px;
-
-          i {
-            font-size: 18px;
-            padding: 0 30px;
-            transform: rotate(0deg);
-            transition: transform 200ms ease-in;
-
-            &.filterModal {
-              transform: rotate(180deg);
-            }
-          }
-        }
-
-        .reset-filter-btn {
-          height: 100%;
-          border: none;
-          outline: none;
-          background-color: transparent;
-          font-size: 12px;
-          font-weight: 700;
-          color: var(--clr-lightgrey);
-          padding-bottom: 15px;
-          padding-right: 15px;
-          cursor: not-allowed;
-
-          &.active {
-            cursor: pointer;
-            color: var(--clr-dark);
-          }
-
-          &:disabled {
-            display: none;
-            cursor: default;
-          }
-        }
-        &.filterModal {
-          background-color: var(--clr-light);
-        }
-
-        .type-filter-modal {
-          // border: 2px solid red;
-          width: 100%;
-          // height: 200px;
-          background-color: var(--clr-light);
-
-          position: absolute;
-          top: 100%;
-          left: 0;
-          padding: 15px 15px;
-
-          .styles {
-            display: flex;
-            flex-direction: column;
-            border-top: 1px solid var(--clr-lightgrey);
-            padding-top: 15px;
-
-            .style-line {
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-
-              .checkbox-title {
-                display: flex;
-                align-items: center;
-                i {
-                  font-size: 25px;
-                  margin-right: 10px;
-                }
-                span {
-                  font-size: 17px;
-                  font-weight: 700;
-                }
-              }
-
-              i {
-                font-size: 40px;
-              }
-            }
-          }
-        }
+      .count {
+        margin-right: 3px;
+        font-size: 24px;
       }
     }
 
-    .cards-container {
+    .offers-filter {
+      z-index: 1;
+      position: relative;
+      min-height: 50px;
       display: flex;
-      flex-wrap: wrap;
-      .card {
-        width: 25%;
-        padding: 40px 50px;
-        .clickable-area {
+      align-items: center;
+      justify-content: space-between;
+
+      .modal-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        height: 100%;
+        width: 190px;
+
+        i {
+          font-size: 18px;
+          padding: 0 30px;
+          transform: rotate(0deg);
+          transition: transform 200ms ease-in;
+
+          &.filterModal {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .reset-filter-btn {
+        height: 100%;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--clr-lightgrey);
+        padding-bottom: 15px;
+        padding-right: 15px;
+        cursor: not-allowed;
+
+        &.active {
+          cursor: pointer;
+          color: var(--clr-dark);
+        }
+
+        &:disabled {
+          display: none;
+          cursor: default;
+        }
+      }
+      &.filterModal {
+        background-color: var(--clr-light);
+      }
+
+      .type-filter-modal {
+        // border: 2px solid red;
+        width: 100%;
+        // height: 200px;
+        background-color: var(--clr-light);
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 15px 15px;
+
+        .styles {
           display: flex;
           flex-direction: column;
-          cursor: pointer;
-          &:hover {
-            img {
-              transform: scale(1.05);
+          border-top: 1px solid var(--clr-lightgrey);
+          padding-top: 15px;
+
+          .style-line {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .checkbox-title {
+              display: flex;
+              align-items: center;
+              i {
+                font-size: 25px;
+                margin-right: 10px;
+              }
+              span {
+                font-size: 17px;
+                font-weight: 700;
+              }
+            }
+
+            i {
+              font-size: 40px;
             }
           }
         }
@@ -155,9 +134,34 @@
     }
   }
 
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    .card {
+      width: 25%;
+      padding: 40px 50px;
+      .clickable-area {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        &:hover {
+          img {
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+  }
   &.modal {
     position: fixed;
     // top: var(--modal-scroll-pos);
     // left: 0;
   }
 }
+
+// &.modal {
+//   position: fixed;
+//   // top: var(--modal-scroll-pos);
+//   // left: 0;
+// }
+// }
