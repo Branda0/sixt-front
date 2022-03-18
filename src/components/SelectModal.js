@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import CarouselOffer from "./CarouselOffer";
+import InfosDetail from "./InfosDetail";
 
 const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
   const navigate = useNavigate();
@@ -23,8 +24,6 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
   // data fetch Hook to get selection offer carousel images
   useEffect(() => {
     try {
-      console.log("in modal fetch");
-      // Get List of agencies corresponding to search input
       const fetchData = async () => {
         const response = await axios.get(`http://localhost:4000/offer/configurations?offerId=${offer.id}`);
         setConfigurationData(response.data);
@@ -49,7 +48,8 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
         <div className="carousel-select-modal">
           {isLoading ? <span>loading</span> : <CarouselOffer images={configurationData.splashImages} />}
           <div className="offer-info">
-            <span className="long-title">{offer.headlines.longSubline}</span>
+            <InfosDetail offer={offer} />
+            {/* <span className="long-title">{offer.headlines.longSubline}</span>
             <div className="details">
               <div className="info">
                 <i className="ico-maxPassengers"></i>
@@ -75,7 +75,7 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
                 <i className="ico-driverRequirements"></i>
                 <span>{offer.carGroupInfo.driverMinAge} Ans</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="right">
@@ -93,7 +93,7 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
             className="to-offerconfig-btn"
             onClick={() => {
               setSelectModal(false);
-              navigate("/offerconfig", { state: { offer, rentalDays } });
+              navigate("/offerconfig", { state: { offer } });
             }}
           >
             SÉLECTIONNER

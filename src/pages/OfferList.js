@@ -10,7 +10,7 @@ import "./OfferList.scss";
 
 import axios from "axios";
 
-const OfferList = ({ selectModal, setSelectModal }) => {
+const OfferList = () => {
   // Get data from Context
   const data = useContext(SearchContext);
 
@@ -40,8 +40,10 @@ const OfferList = ({ selectModal, setSelectModal }) => {
   // modal states
   const [filterModal, setFilterModal] = useState(false);
 
-  // data used for selected offer Modal details
-  const [offerModal, setOfferModal] = useState([]);
+  // offer data to send to OfferModal component for selected offer Modal details
+  const [selectedOffer, setSelectedOffer] = useState([]);
+  // status of opened/closed selected offer Modal
+  const [selectModal, setSelectModal] = useState(false);
 
   // Update filtered Status of individual styles
   const updateStyle = (index) => {
@@ -132,7 +134,7 @@ const OfferList = ({ selectModal, setSelectModal }) => {
   }, [agency, timeStart, timeEnd, dateStart, dateEnd, rentalDays]);
 
   return (
-    <>
+    <div className={`container-offerlist ${selectModal && "modal"}`}>
       <SearchComponents />
       {isLoading ? (
         <span>Loading</span>
@@ -197,15 +199,14 @@ const OfferList = ({ selectModal, setSelectModal }) => {
               <div className="cards-container">
                 {filteredOffers.map((offer, index) => {
                   return (
-                    <div
-                      key={index}
-                      className={"card"}
-                      onClick={() => {
-                        setSelectModal(true);
-                        setOfferModal(offer);
-                      }}
-                    >
-                      <div className="clickable-card">
+                    <div key={index} className={"card"}>
+                      <div
+                        className="clickable-area"
+                        onClick={() => {
+                          setSelectModal(true);
+                          setSelectedOffer(offer);
+                        }}
+                      >
                         <OfferCard offer={offer} rentalDays={rentalDays} />
                       </div>
                     </div>
@@ -216,11 +217,11 @@ const OfferList = ({ selectModal, setSelectModal }) => {
             )}
           </div>
           {selectModal && (
-            <SelectModal setSelectModal={setSelectModal} offer={offerModal} rentalDays={rentalDays} />
+            <SelectModal setSelectModal={setSelectModal} offer={selectedOffer} rentalDays={rentalDays} />
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

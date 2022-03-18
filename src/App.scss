@@ -19,12 +19,15 @@ body {
 .App-container {
   max-width: var(--max-width);
   margin: 0 auto;
-  height: 100vh;
-  // background-color: var(--clr-primary);
+
+  color: var(--clr-dark);
+  // height: fit-content;
+  background-color: var(--clr-primary);
 
   &.modal {
-    // position: fixed;
+    // bottom: 0;
     overflow: hidden;
+    // margin: 0 auto;
   }
 
   &::-webkit-scrollbar {

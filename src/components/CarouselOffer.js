@@ -7,7 +7,6 @@ import "./CarouselOffer.scss";
 import "react-multi-carousel/lib/styles.css";
 
 const CarouselOffer = ({ images }) => {
-  console.log("data = ", images);
   const responsiveCarousel = {
     device: {
       breakpoint: { max: 3000, min: 0 },
