@@ -1,0 +1,63 @@
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .placeholder {
+    position: absolute;
+    left: 0px;
+    font-size: 18px;
+    color: var(--clr-lightgrey);
+    font-weight: 700;
+    // width: 100%;
+    pointer-events: none;
+    transition: all 500ms ease;
+    // transition: font-size 500ms ease;
+
+    &.fixed {
+      transform: translateY(-22px);
+      font-size: 12px;
+    }
+  }
+
+  .input-field {
+    font-family: "Roboto Condensed", sans-serif;
+    text-decoration: none !important;
+    font-weight: 700;
+    color: var(--clr-dark);
+    width: 100%;
+    padding: 5px 0;
+    border: none;
+    outline: none;
+    border-bottom: 1.5px solid var(--clr-lightgrey);
+    font-size: 19px;
+    transition: transform 300ms ease;
+
+    &.fixed {
+      border-bottom: 1px solid var(--clr-dark);
+    }
+
+    &.capitalize {
+      text-transform: capitalize;
+    }
+    &.uppercase {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.input-container:focus-within {
+  .input-field {
+    color: var(--clr-primary);
+    border-bottom: 1.5px solid var(--clr-primary);
+
+    &::selection {
+      background-color: var(--clr-dark);
+    }
+  }
+  .placeholder {
+    transform: translateY(-24px);
+    color: var(--clr-primary);
+    font-size: 13px;
+  }
+}

@@ -6,10 +6,18 @@ import { SearchContext } from "../context/SearchContext";
 import "./PersonnalDetails.scss";
 
 import PriceDetails from "../components/PriceDetails";
+import InputForm from "../components/InputForm";
 
 const PersonnalDetails = () => {
   // Get data from Context
   const data = useContext(SearchContext);
+
+  const rentalDays = data.rentalDays;
+  const agency = data.agency;
+  const timeStart = data.timeStart;
+  const timeEnd = data.timeEnd;
+  const dateStart = data.dateStart;
+  const dateEnd = data.dateEnd;
 
   // Get data from routing from /offerconfig page
   const { state } = useLocation();
@@ -18,12 +26,8 @@ const PersonnalDetails = () => {
   const totalPrice = state.totalPrice;
   const extraFees = state.extraFees;
 
-  // number of rental days (from context)
-  const rentalDays = data.rentalDays;
-
   // States values of personal details form data
-  const [isMale, setIsMale] = useState(false);
-  const [isFemale, setIsFemale] = useState(false);
+  const [gender, setGender] = useState("");
   const [company, setCompany] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -31,118 +35,242 @@ const PersonnalDetails = () => {
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("France");
+  const [phoneCode, setPhoneCode] = useState("+33");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [postalCode, setPostalCode] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState({});
+  const [dayOfBirth, setDayOfBirth] = useState();
+  const [monthOfBirth, setMonthOfBirth] = useState();
+  const [yearOfBirth, setYearOfBirth] = useState();
 
   const [confirmationModal, setConfirmationModal] = useState(false);
-
+  if (firstName) {
+    console.log("yes");
+  } else {
+    console.log("no");
+  }
   const handleSubmit = async (event) => {
-    // event.preventDefault();
-    // try {
-    //   const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/user/signup", {
-    //     email: email,
-    //     username: name,
-    //     password: password,
-    //     newsletter: newsletter,
-    //   });
-    //   // const response = await axios.post("https://brandao-vinted.herokuapp.com/user/signup", {
-    //   //   email: email,
-    //   //   username: name,
-    //   //   password: password,
-    //   //   newsletter: newsletter,
-    //   // });
-    //   console.log(response.data);
-    //   setReference(response.data.token, response.data._id);
-    //   setSignupModal(false);
-    //   // setSignupError("");
-    // } catch (error) {
-    //   if (error.response.status === 400) {
-    //     setSignupError("Paramètres manquants");
-    //   } else if (error.response.status === 409) {
-    //     setSignupError("Cet email a déjà un compte !");
-    //   }
-    // }
+    event.preventDefault();
+    try {
+      const response = await axios.post("https://brandao-vinted.herokuapp.com/user/signup", {
+        gender,
+        company,
+        firstName,
+        lastName,
+        email,
+        street,
+        city,
+        country,
+        phoneCode,
+        phoneNumber,
+        postalCode,
+        dayOfBirth,
+        monthOfBirth,
+        yearOfBirth,
+      });
+      // const response = await axios.post("https://brandao-vinted.herokuapp.com/user/signup", {
+      //   email: email,
+      //   username: name,
+      //   password: password,
+      //   newsletter: newsletter,
+      // });
+      console.log(response.data);
+      // setSignupError("");
+    } catch (error) {
+      if (error.response.status === 400) {
+      } else if (error.response.status === 409) {
+      }
+    }
   };
 
   return (
-    <div className={`personnaldetails-container ${confirmationModal && "modal"}`}>
-      <span>TEST</span>
-      <form onSubmit={handleSubmit}>
+    <div className={"personnaldetails-container"}>
+      <form className="personnal-form" onSubmit={handleSubmit}>
+        <h1>informations personelles</h1>
         <div className="gender">
           <i
-            className={isMale ? "ico-radio-selected" : "ico-radio"}
+            className={gender === "m" ? "ico-radio-selected" : "ico-radio"}
             onClick={() => {
-              if (!isMale && isFemale) {
-                setIsFemale(false);
+              if (gender === "m") {
+                setGender("");
+              } else {
+                setGender("m");
               }
-              setIsMale(!isMale);
             }}
           ></i>
           <span>M.</span>
           <i
-            className={isFemale ? "ico-radio-selected" : "ico-radio"}
+            className={gender === "f" ? "ico-radio-selected" : "ico-radio"}
             onClick={() => {
-              if (!isFemale && isMale) {
-                setIsMale(false);
+              if (gender === "f") {
+                setGender("");
+              } else {
+                setGender("f");
               }
-              setIsFemale(!isFemale);
+              //   setIsMale(!isMale);
             }}
           ></i>
           <span>Mme</span>
         </div>
-        <div className="input-rows">
-          <div className="left-row"></div>
-          <div className="right-row"></div>
+
+        <div className="rows">
+          <div className="left-row">
+            <InputForm
+              type={"text"}
+              format={"capitalize"}
+              value={company}
+              setValue={setCompany}
+              placeholder={"Société"}
+            />
+            <InputForm
+              required={true}
+              type={"text"}
+              format={"capitalize"}
+              value={firstName}
+              setValue={setFirstName}
+              placeholder={"Prénom *"}
+            />
+            <InputForm
+              type={"email"}
+              value={email}
+              setValue={setEmail}
+              required={true}
+              placeholder={"Adresse email *"}
+            />
+            <InputForm
+              format={"capitalize"}
+              type={"text"}
+              value={street}
+              setValue={setStreet}
+              required={true}
+              placeholder={"Rue *"}
+            />
+            <InputForm
+              format={"capitalize"}
+              type={"text"}
+              value={country}
+              setValue={setCountry}
+              placeholder={"Pays"}
+            />
+          </div>
+
+          <div className="right-row">
+            <InputForm
+              type={"text"}
+              format={"capitalize"}
+              value={lastName}
+              setValue={setLastName}
+              required={true}
+              placeholder={"Nom de famille *"}
+            />
+
+            <div className="line">
+              <InputForm
+                size={"small"}
+                type={"text"}
+                value={phoneCode}
+                setValue={setPhoneCode}
+                placeholder={"Code pays"}
+              />
+              <InputForm
+                size={"medium"}
+                type={"text"}
+                value={phoneNumber}
+                setValue={setPhoneNumber}
+                required={true}
+                placeholder={"Numéro de téléphone *"}
+              />
+            </div>
+            <div className="line">
+              <InputForm
+                size={"small"}
+                type={"text"}
+                value={postalCode}
+                setValue={setPostalCode}
+                required={true}
+                placeholder={"Code postal *"}
+              />
+              <InputForm
+                format={"uppercase"}
+                size={"medium"}
+                type={"text"}
+                value={city}
+                setValue={setCity}
+                required={true}
+                placeholder={"Ville *"}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="date-birth">
+          <span></span>
+          <div className="line">
+            <InputForm
+              type={"text"}
+              size={"small"}
+              maxLength={2}
+              format={"capitalize"}
+              value={dayOfBirth}
+              setValue={setDayOfBirth}
+              required={true}
+              placeholder={"JJ *"}
+            />
+            <InputForm
+              type={"text"}
+              size={"small"}
+              maxLength={2}
+              format={"capitalize"}
+              value={monthOfBirth}
+              setValue={setMonthOfBirth}
+              required={true}
+              placeholder={"MM *"}
+            />
+            <InputForm
+              type={"text"}
+              size={"medium"}
+              maxLength={4}
+              format={"capitalize"}
+              value={yearOfBirth}
+              setValue={setYearOfBirth}
+              required={true}
+              placeholder={"AAAA *"}
+            />
+          </div>
+        </div>
+        <h1>vérifier et réserver</h1>
+        <div className="price-detail">
+          <PriceDetails
+            offer={offer}
+            agency={agency}
+            rentalDays={rentalDays}
+            configurationData={configurationData}
+            totalPrice={totalPrice}
+            extraFees={extraFees}
+          />
         </div>
 
-        {/* <input
-          value={email}
-          type="email"
-          placeholder="Email"
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
-        <div className="form-input-password">
-          <input
-            className="input"
-            value={password}
-            type={passwordVisibility ? "text" : "password"}
-            placeholder="Mot de passe"
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-          <span onClick={() => setPasswordVisibility(!passwordVisibility)} className="eye-icon">
-            <FontAwesomeIcon icon="eye" />
-          </span>
+        <p>
+          En cliquant sur le bouton, je confirme que j'ai lu et accepté les <b>informations de location</b> et
+          les <b>termes et conditions</b>
+        </p>
+        <div className="submit-btn">
+          <button type="submit">réserver</button>
+          {(!firstName ||
+            !lastName ||
+            !email ||
+            !street ||
+            !phoneNumber ||
+            !postalCode ||
+            !city ||
+            !dayOfBirth ||
+            !monthOfBirth ||
+            !yearOfBirth) && (
+            <div className="missing-msg">
+              <span>champs obligatoires manquants</span>
+              <i className={"ico-info"}></i>
+            </div>
+          )}
         </div>
-        <div className="form-newsletter">
-          <input
-            value={newsletter}
-            type="checkbox"
-            onChange={(event) => {
-              setNewsletter(event.target.checked);
-            }}
-          />
-          <span>S'inscrire à notre newsletter</span>
-        </div> */}
-
-        {/* <p>
-          En m'inscrivant je confirme avoir lu et accepté les Termes & Conditions et Politique de
-          Confidentialité de Vinted. Je confirme avoir au moins 18 ans.
-        </p> */}
-        {/* {signupError && <span className="error-msg">{signupError}</span>} */}
-        <button type="submit">S'inscrire</button>
       </form>
-      <PriceDetails
-        offer={offer}
-        rentalDays={rentalDays}
-        configurationData={configurationData}
-        totalPrice={totalPrice}
-        extraFees={extraFees}
-      />
     </div>
   );
 };

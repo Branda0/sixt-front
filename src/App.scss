@@ -10,7 +10,7 @@ body {
 :root {
   --clr-primary: #ff5f00;
   --clr-dark: #191919;
-  --clr-lightgrey: #b2b2b2;
+  --clr-lightgrey: #c5c5c5;
   --clr-grey: #969696;
   --clr-light: #ffffff;
   --max-width: 1600px;
@@ -22,7 +22,6 @@ body {
 .App-container {
   max-width: var(--max-width);
   margin: 0 auto;
-
   color: var(--clr-dark);
   // background-color: var(--clr-light);
   background-color: transparent;

@@ -1,8 +1,46 @@
 .price-details-container {
   display: flex;
+  margin-bottom: 30px;
   flex-direction: column;
 
+  .rental-general {
+    display: flex;
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      span {
+        font-family: "Roboto", sans-serif;
+        font-size: 13px;
+        margin: 5px 10px 5px 0;
+      }
+      .car-subline {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+    }
+    img {
+      max-width: 230px;
+    }
+  }
+
+  .additional-infos {
+    .line {
+      display: flex;
+      align-items: center;
+
+      i {
+        font-size: 12px;
+      }
+      span {
+        padding: 5px;
+        margin-left: 8px;
+      }
+    }
+  }
   .line-detail {
+    // border: 2px solid red;
     display: flex;
     align-items: center;
     padding: 2px;
@@ -29,7 +67,7 @@
 
   .title {
     margin: 25px 0 10px;
-    font-size: 23px;
+    font-size: 22px;
   }
   .details {
     font-family: "Roboto", sans-serif;

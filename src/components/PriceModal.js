@@ -28,9 +28,7 @@ const PriceModal = ({
       >
         <div className="content">
           <PriceDetails
-            title={"détails du prix"}
             offer={offer}
-            rentalDays={rentalDays}
             configurationData={configurationData}
             totalPrice={totalPrice}
             extraFees={extraFees}

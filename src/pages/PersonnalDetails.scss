@@ -1,29 +1,149 @@
 .personnaldetails-container {
   background-color: var(--clr-light);
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
-  max-width: 1024px;
+  max-width: 1000px;
   margin: 0 auto;
-  border: 2px solid red;
+  padding: 20px 0;
 
-  .gender {
+  .personnal-form {
     display: flex;
-    align-items: center;
-    form {
+    flex-direction: column;
+    // border: 2px solid black;
+    // overflow: hidden;
+
+    h1 {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 23px;
+      margin-bottom: 30px;
+      padding: 12px 0;
+      border-bottom: 3px solid var(--clr-dark);
+    }
+
+    .gender {
       display: flex;
+      align-items: center;
+      margin-bottom: 10px;
 
-      .input-row {
-        .left-row {
-          height: 300px;
-          border: 2px solid red;
-          width: 50%;
+      i {
+        font-size: 20px;
+        cursor: pointer;
+      }
+      span {
+        font-weight: 700;
+        margin: 0 25px 0 15px;
+      }
+    }
+    .input-container {
+      margin: 20px 0px;
+    }
+    .rows {
+      display: flex;
+      align-items: center;
+
+      .left-row,
+      .right-row {
+        display: flex;
+        flex-direction: column;
+
+        .line {
+          display: flex;
+
+          .input-container {
+            &.small {
+              flex: 1;
+              margin-right: 20px;
+            }
+
+            &.medium {
+              flex: 2;
+              margin-left: 20px;
+            }
+          }
         }
+      }
 
-        .right {
-          height: 300px;
-          width: 50%;
-          border: 2px solid green;
+      .left-row {
+        // border: 2px solid red;
+        padding-right: 35px;
+        flex: 1;
+      }
+
+      .right-row {
+        padding-left: 35px;
+        flex: 1;
+        // border: 2px solid green;
+      }
+    }
+
+    .date-birth {
+      margin-bottom: 40px;
+      .line {
+        width: 250px;
+        // max-width: 50%;
+        display: flex;
+
+        .input-container {
+          &.small {
+            flex: 3;
+            margin-right: 20px;
+          }
+
+          &.medium {
+            flex: 5;
+            margin-left: 20px;
+          }
         }
       }
     }
+
+    .price-detail {
+      //   margin-top: 30px;
+      max-width: 600px;
+    }
+
+    p {
+      border-top: 1px solid var(--clr-lightgrey);
+      padding-top: 20px;
+      font-size: 13px;
+      font-family: "Roboto", sans-serif;
+      b {
+        color: var(--clr-primary);
+      }
+    }
+
+    .submit-btn {
+      display: flex;
+      position: relative;
+      button {
+        width: 300px;
+        padding: 15px 0;
+        margin: 30px 0;
+        border: none;
+        background-color: var(--clr-primary);
+        text-transform: uppercase;
+        color: var(--clr-light);
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .missing-msg {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        color: var(--clr-primary);
+        left: 0;
+        bottom: 0px;
+        span {
+          font-size: 12px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1040px) {
+  .personnaldetails-container {
+    margin: 0 20px;
   }
 }
