@@ -78,8 +78,6 @@ const Header = ({ setPassword, adminLogged }) => {
         <i className="ico-planet" />
         <span>BACKOFFICE</span>
       </Link>
-
-      {/* <span>Hello world</span> */}
     </div>
   );
 };

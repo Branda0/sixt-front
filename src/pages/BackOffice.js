@@ -5,12 +5,15 @@ import "./BackOffice.scss";
 import InputForm from "../components/InputForm";
 import Loader from "../components/Loader";
 import RentalLine from "../components/RentalLine";
+import PriceDetails from "../components/PriceDetails";
 
 const BackOffice = ({ setPassword, adminLogged }) => {
   const [adminPassword, setAdminPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [rentalsData, setRentalsData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [detailsModal, setDetailsModal] = useState(false);
+  const [detailsOffer, setDetailsOffer] = useState();
 
   // Scroll to Top screen when coming from another page with navigate
   useEffect(() => {
@@ -23,7 +26,8 @@ const BackOffice = ({ setPassword, adminLogged }) => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/rentals");
+      // const response = await axios.get("http://localhost:4000/rentals");
+      const response = await axios.get("https://brandao-sixt.herokuapp.com/rentals");
       setRentalsData(response.data);
       console.log("data", response.data);
       setIsLoading(false);
@@ -35,8 +39,6 @@ const BackOffice = ({ setPassword, adminLogged }) => {
   const handleAdminSignIn = async (event) => {
     event.preventDefault();
     try {
-      //   const response = await axios.post("https://brandao-sixt.herokuapp.com/rental/new", {
-      //   const response = await axios.post("http://localhost:4000/backoffice/login", {
       const response = await axios.post("https://brandao-sixt.herokuapp.com/backoffice/login", {
         adminPassword,
       });
@@ -59,9 +61,8 @@ const BackOffice = ({ setPassword, adminLogged }) => {
 
   const handleDelete = async (id) => {
     try {
-      //   const response = await axios.post("https://brandao-sixt.herokuapp.com/rental/new", {
-      //   const response = await axios.post("http://localhost:4000/backoffice/login", {
-      const response = await axios.delete(`http://localhost:4000/rental/delete?id=${id}`);
+      const response = await axios.delete(`https://brandao-sixt.herokuapp.com/rental/delete?id=${id}`);
+      // const response = await axios.delete(`http://localhost:4000/rental/delete?id=${id}`);
       fetchData();
     } catch (error) {
       if (error.response.status === 400) {
@@ -78,6 +79,28 @@ const BackOffice = ({ setPassword, adminLogged }) => {
           <Loader />
         ) : (
           <div className="logged-page">
+            <div className={`details-modal-bg ${detailsModal && "visible"}`}>
+              <div className="modal">
+                {detailsOffer && (
+                  <PriceDetails
+                    backoffice={detailsOffer}
+                    offer={detailsOffer.offer}
+                    configurationData={detailsOffer.configuration}
+                    totalPrice={detailsOffer.price}
+                    extraFees={detailsOffer.extraFees}
+                  />
+                )}
+
+                <i
+                  className="ico-close"
+                  onClick={() => {
+                    setDetailsModal(false);
+                    // navigate("/");
+                  }}
+                ></i>
+              </div>
+            </div>
+
             <div className="rental-count">
               <span className="title">Réservations validées :</span>
               <span className="count">{rentalsData.count}</span>
@@ -96,11 +119,19 @@ const BackOffice = ({ setPassword, adminLogged }) => {
                 price={"Prix Total"}
               />
             </div>
-            {/* <div className="rental-list"> */}
             {rentalsData.rentals.map((rental, index) => {
               return (
-                <div key={index} className="close-relative">
+                <div
+                  onClick={() => {
+                    setDetailsOffer(rental);
+                    setDetailsModal(true);
+                  }}
+                  key={index}
+                  className="close-relative"
+                >
                   <RentalLine
+                    setDetailsModal={setDetailsModal}
+                    setDetailsOffer={setDetailsOffer}
                     reference={rental.reference}
                     firstName={rental.client.firstName}
                     lastName={rental.client.lastName}
@@ -111,12 +142,18 @@ const BackOffice = ({ setPassword, adminLogged }) => {
                     days={rental.date.daysPaid}
                     price={rental.price}
                   />
-                  <i className="ico-close" onClick={() => handleDelete(rental._id)}></i>
+                  <i
+                    className="ico-close"
+                    onClick={(event) => {
+                      handleDelete(rental._id);
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }}
+                  ></i>
                 </div>
               );
             })}
           </div>
-          //   </div>
         )
       ) : (
         <form className="password-form" onSubmit={handleAdminSignIn}>

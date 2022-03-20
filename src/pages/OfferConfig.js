@@ -16,14 +16,6 @@ const OfferConfig = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  /////
-  /////
-  /////
-  // if (state === null) navigate("/");
-  /////
-  /////
-  /////
-
   const offer = state.offer;
 
   // Get data from Context
@@ -48,7 +40,6 @@ const OfferConfig = () => {
   useEffect(() => {
     const computeTotal = () => {
       let optionsPrice = 0;
-      console.log(configurationData.additionalCharges[2].price);
       configurationData.additionalCharges.forEach((element) => {
         if (element.amount === 1) {
           if (element.price.unit.includes("jour")) {

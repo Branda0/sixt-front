@@ -72,6 +72,7 @@ const PersonnalDetails = () => {
         yearOfBirth,
         configurationData,
         offer,
+        extraFees,
         rentalDays,
         timeStart,
         timeEnd,
@@ -129,7 +130,6 @@ const PersonnalDetails = () => {
               } else {
                 setGender("f");
               }
-              //   setIsMale(!isMale);
             }}
           ></i>
           <span>Mme</span>

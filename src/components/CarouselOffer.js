@@ -22,7 +22,6 @@ const CarouselOffer = ({ images }) => {
         dotListClass="dotList"
         infinite={images.length > 1}
         arrows={images.length > 1}
-        // showDots={images.length > 1}
         showDots={true}
         responsive={responsiveCarousel}
       >

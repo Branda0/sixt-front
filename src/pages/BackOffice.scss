@@ -9,6 +9,64 @@
   .logged-page {
     width: 100%;
     margin-bottom: 300px;
+
+    .details-modal-bg {
+      position: fixed;
+      z-index: 3;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      transform: scale(0);
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .modal {
+        position: relative;
+        background-color: var(--clr-light);
+        transform: scale(0);
+        transition: transform 300ms ease;
+        padding: 50px 40px;
+        width: 700px;
+
+        h1 {
+          text-transform: uppercase;
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 20px;
+        }
+        .referenceID {
+          font-size: 15px;
+        }
+        .reference-line {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+
+          .referenceID {
+            font-size: 20px;
+          }
+        }
+
+        .ico-close {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          padding: 5px;
+          font-size: 25px;
+          cursor: pointer;
+        }
+      }
+      &.visible {
+        transform: scale(1);
+        .modal {
+          transform: scale(1);
+        }
+      }
+    }
+
     .close-relative {
       position: relative;
     }
@@ -81,7 +139,7 @@
     }
 
     .btn-msg-container {
-      margin-top: 20px;
+      margin-top: 30px;
       position: relative;
       width: fit-content;
 

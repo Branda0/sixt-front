@@ -7,7 +7,7 @@ import axios from "axios";
 import moment from "moment";
 import "./PriceDetails.scss";
 
-const PriceDetails = ({ offer, configurationData, totalPrice, extraFees }) => {
+const PriceDetails = ({ offer, configurationData, totalPrice, extraFees, backoffice }) => {
   // location used to have component customized for various routes
   const location = useLocation();
 
@@ -66,6 +66,18 @@ const PriceDetails = ({ offer, configurationData, totalPrice, extraFees }) => {
               <i className={"ico-driverRequirements"}></i>
               <span className="details">Conducteur âgé d'au moins {offer.carGroupInfo.driverMinAge} ans</span>
             </div>
+          </div>
+        </>
+      )}
+
+      {location.pathname === "/backoffice" && (
+        <>
+          <div className="rental-general">
+            <div className="details">
+              <span className="car-subline">{offer.headlines.longSubline}</span>
+              <span>{`${backoffice.date.dateStart} à ${backoffice.date.timeStart} - ${backoffice.date.dateEnd} à ${backoffice.date.timeEnd} `}</span>
+            </div>
+            <img src={offer.images.small} alt="" />
           </div>
         </>
       )}

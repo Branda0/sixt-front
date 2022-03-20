@@ -11,7 +11,6 @@ const AgencyModal = ({ isLoading, setAgencyModal, setData, data }) => {
         onClick={(event) => {
           event.preventDefault();
           event.stopPropagation();
-          // e.stopImmediatePropagation();
         }}
       >
         {isLoading ? (

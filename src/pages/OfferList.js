@@ -131,8 +131,6 @@ const OfferList = () => {
     try {
       // Only fetch data if Return Date is after Departure Date and agency is selected
       if (agency && rentalDays > 0) {
-        console.log("FETCHDATA");
-        console.log(agency);
         fetchData();
       } else {
         alert("need agency");

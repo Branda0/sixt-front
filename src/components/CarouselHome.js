@@ -18,8 +18,6 @@ const CarouselHome = () => {
       autoPlay={true}
       autoPlaySpeed={4000}
       className="carousel-home"
-      // containerClass="carousel-container"
-      // itemClass="item-class"
       dotListClass="dotList"
       infinite
       showDots

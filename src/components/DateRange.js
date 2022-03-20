@@ -32,7 +32,6 @@ const DateRange = ({ setDateModal }) => {
   });
 
   const onSelect = (dates) => {
-    // setValue(value);
     setDates(dates);
     setDateModal(false);
   };

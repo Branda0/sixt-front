@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import "./Home.scss";
 
 import worldImg from "../assets/img/sixt-in-the-world.png";
-import timeTable from "../assets/data/timetable.json";
-// import classNames from "classnames";
 
 import SearchComponents from "../components/SearchComponents";
 import CarouselHome from "../components/CarouselHome";
@@ -35,13 +33,6 @@ const Home = () => {
           <i className="ico-youtube-logo"></i>
         </div>
       </div>
-      {/* <i className="ico-estate" /> */}
-
-      {/* <Link className={`test ${disabled && "disabled"} `} to="/offerlist">
-        VOIR LES OFFRES
-      </Link> */}
-
-      {/* <AgencyModal data={agenciesData} setData={setAgenciesData} isLoading={isLoading} /> */}
     </div>
   );
 };
