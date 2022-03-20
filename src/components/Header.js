@@ -64,6 +64,7 @@ const Header = ({ setPassword, adminLogged }) => {
 
       {location.pathname === "/backoffice" && adminLogged && (
         <button
+          className="disconnect-btn"
           onClick={() => {
             setPassword();
             navigate("/");

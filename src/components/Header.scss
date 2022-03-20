@@ -104,6 +104,21 @@
     }
   }
 
+  .disconnect-btn {
+    margin-right: 10px;
+    padding: 5px 10px;
+    align-self: center;
+    text-transform: uppercase;
+    font-size: 13px;
+    border: none;
+    font-weight: 700;
+    color: var(--clr-light);
+    background-color: var(--clr-primary);
+    border-radius: 3px;
+    height: fit-content;
+    cursor: pointer;
+  }
+
   .back-office {
     text-decoration: none;
     color: var(--clr-dark);
