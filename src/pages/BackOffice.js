@@ -16,7 +16,8 @@ const BackOffice = ({ setPassword, adminLogged }) => {
     event.preventDefault();
     try {
       //   const response = await axios.post("https://brandao-sixt.herokuapp.com/rental/new", {
-      const response = await axios.post("http://localhost:4000/backoffice/login", {
+      //   const response = await axios.post("http://localhost:4000/backoffice/login", {
+      const response = await axios.post("https://brandao-sixt.herokuapp.com/backoffice/login", {
         adminPassword,
       });
 
