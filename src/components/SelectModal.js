@@ -25,7 +25,10 @@ const SelectModal = ({ setSelectModal, offer, rentalDays }) => {
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const response = await axios.get(`http://localhost:4000/offer/configurations?offerId=${offer.id}`);
+        // const response = await axios.get(`http://localhost:4000/offer/configurations?offerId=${offer.id}`);
+        const response = await axios.get(
+          `https://brandao-sixt.herokuapp.com/offer/configurations?offerId=${offer.id}`
+        );
         setConfigurationData(response.data);
         setIsLoading(false);
       };

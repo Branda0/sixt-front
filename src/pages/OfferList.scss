@@ -2,7 +2,7 @@
 .offerlist-container {
   max-width: var(--max-width);
   background-color: var(--clr-primary);
-  min-height: 80vh;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
   color: var(--clr-dark);
 
   .filter-bar {

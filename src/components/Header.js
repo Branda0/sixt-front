@@ -1,10 +1,13 @@
+import { useContext } from "react";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+
 import logo from "../assets/img/sixt-logo.png";
 import "./Header.scss";
 
-import { useLocation, Link } from "react-router-dom";
-
-const Header = () => {
+const Header = ({ setPassword, adminLogged }) => {
+  const navigate = useNavigate();
   const location = useLocation();
+
   return (
     <div className="header-container">
       <Link to="/">
@@ -12,7 +15,7 @@ const Header = () => {
       </Link>
 
       <div className="center-header">
-        {location.pathname === "/" ? (
+        {location.pathname === "/" || location.pathname === "/backoffice" ? (
           <nav className="home">
             <span>RENT</span>
             <span>SHARE</span>
@@ -58,10 +61,22 @@ const Header = () => {
           </div>
         )}
       </div>
-      <div className="back-office">
+
+      {location.pathname === "/backoffice" && adminLogged && (
+        <button
+          onClick={() => {
+            setPassword();
+            navigate("/");
+          }}
+        >
+          se deconnecter
+        </button>
+      )}
+
+      <Link className="back-office" to="/backoffice">
         <i className="ico-planet" />
         <span>BACKOFFICE</span>
-      </div>
+      </Link>
 
       {/* <span>Hello world</span> */}
     </div>

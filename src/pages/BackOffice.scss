@@ -1,0 +1,6 @@
+.backoffice-container {
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  max-width: 1000px;
+  border: 2px solid red;
+  margin: 0 auto;
+}

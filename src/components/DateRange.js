@@ -43,13 +43,9 @@ const DateRange = ({ setDateModal }) => {
       onSelect={onSelect}
       className={"dateRange"}
       minimumDate={new Date()}
-      //   initialDate={new Date()}
-      //   initialFromValue={false}
       singleDateRange={true}
       firstOfWeek={1}
       locale={moment.locale("fr")}
-      //   selectionType={"single"}
-      // paginationArrowComponent={<span>YO</span>}
     />
   );
 };

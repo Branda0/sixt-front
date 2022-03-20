@@ -25,8 +25,6 @@ const PriceDetails = ({ offer, configurationData, totalPrice, extraFees }) => {
   const [dateStart, setDateStart] = data.dateStart;
   const [dateEnd, setDateEnd] = data.dateEnd;
 
-  const mydate = moment(dateStart, "YYYY-MM-DD").format("DD MMM");
-  console.log(mydate);
   // number of rental days (from context)
   const rentalDays = data.rentalDays;
 

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Navigate, useLocation, useNavigate, Link } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { SearchContext } from "../context/SearchContext";
@@ -9,15 +9,16 @@ import PriceDetails from "../components/PriceDetails";
 import InputForm from "../components/InputForm";
 
 const PersonnalDetails = () => {
+  const navigate = useNavigate();
   // Get data from Context
   const data = useContext(SearchContext);
 
   const rentalDays = data.rentalDays;
-  const agency = data.agency;
-  const timeStart = data.timeStart;
-  const timeEnd = data.timeEnd;
-  const dateStart = data.dateStart;
-  const dateEnd = data.dateEnd;
+  const [agency] = data.agency;
+  const [timeStart] = data.timeStart;
+  const [timeEnd] = data.timeEnd;
+  const [dateStart] = data.dateStart;
+  const [dateEnd] = data.dateEnd;
 
   // Get data from routing from /offerconfig page
   const { state } = useLocation();
@@ -42,16 +43,19 @@ const PersonnalDetails = () => {
   const [monthOfBirth, setMonthOfBirth] = useState();
   const [yearOfBirth, setYearOfBirth] = useState();
 
+  const [referenceID, setReferenceID] = useState();
   const [confirmationModal, setConfirmationModal] = useState(false);
-  if (firstName) {
-    console.log("yes");
-  } else {
-    console.log("no");
-  }
+
+  // Scroll to Top screen when coming from another page with navigate
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://brandao-vinted.herokuapp.com/user/signup", {
+      //   const response = await axios.post("https://brandao-sixt.herokuapp.com/rental/new", {
+      const response = await axios.post("http://localhost:4000/rental/new", {
         gender,
         company,
         firstName,
@@ -66,15 +70,18 @@ const PersonnalDetails = () => {
         dayOfBirth,
         monthOfBirth,
         yearOfBirth,
+        configurationData,
+        offer,
+        rentalDays,
+        timeStart,
+        timeEnd,
+        dateStart,
+        dateEnd,
+        totalPrice,
       });
-      // const response = await axios.post("https://brandao-vinted.herokuapp.com/user/signup", {
-      //   email: email,
-      //   username: name,
-      //   password: password,
-      //   newsletter: newsletter,
-      // });
-      console.log(response.data);
-      // setSignupError("");
+
+      setReferenceID(response.data.reference);
+      setConfirmationModal(true);
     } catch (error) {
       if (error.response.status === 400) {
       } else if (error.response.status === 409) {
@@ -83,7 +90,23 @@ const PersonnalDetails = () => {
   };
 
   return (
-    <div className={"personnaldetails-container"}>
+    <div className="personnaldetails-container">
+      <div className={`confirmation-modal-bg ${confirmationModal && "visible"}`}>
+        <div className="modal">
+          <h1>réservation confirmée</h1>
+          <div className="reference-line">
+            <span>Voici la référence de votre dossier :</span>
+            <span className="referenceID">{referenceID}</span>
+          </div>
+          <i
+            className="ico-close"
+            onClick={() => {
+              setConfirmationModal(false);
+              navigate("/");
+            }}
+          ></i>
+        </div>
+      </div>
       <form className="personnal-form" onSubmit={handleSubmit}>
         <h1>informations personelles</h1>
         <div className="gender">

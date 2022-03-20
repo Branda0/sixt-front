@@ -10,18 +10,16 @@ import SearchComponents from "../components/SearchComponents";
 import InfosDetail from "../components/InfosDetail";
 import OptionCard from "../components/OptionCard";
 import PriceModal from "../components/PriceModal";
+import Loader from "../components/Loader";
 
 const OfferConfig = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
   /////
-  /////
-  /////
   // if (state === null) navigate("/");
   /////
-  /////
-  /////
+
   let offer = null;
   if (state) {
     offer = state.offer;
@@ -80,7 +78,10 @@ const OfferConfig = () => {
       };
 
       const fetchData = async () => {
-        const response = await axios.get(`http://localhost:4000/offer/configurations?offerId=${offer.id}`);
+        // const response = await axios.get(`http://localhost:4000/offer/configurations?offerId=${offer.id}`);
+        const response = await axios.get(
+          `https://brandao-sixt.herokuapp.com/offer/configurations?offerId=${offer.id}`
+        );
         setConfigurationData(response.data);
         computeExtraFees(response.data);
         setIsLoading(false);
@@ -96,7 +97,7 @@ const OfferConfig = () => {
     <div className={`offerconfig-container ${priceDetailModal && "modal"}`}>
       <SearchComponents />
       {isLoading ? (
-        <span>Loading</span>
+        <Loader />
       ) : (
         <>
           {priceDetailModal && (

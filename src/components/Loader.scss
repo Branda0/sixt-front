@@ -1,0 +1,70 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  //   width: 100%;
+
+  .ico-delorean {
+    text-align: center;
+    font-size: 40px;
+    padding: 10px;
+  }
+}
+
+@keyframes moovingLeft {
+  0% {
+    -webkit-transform: translateX(1000px);
+    opacity: 0%;
+  }
+  20% {
+    -webkit-transform: translateX(10px);
+    opacity: 100%;
+  }
+  50% {
+    -webkit-transform: translateX(0px);
+    opacity: 100%;
+  }
+  80% {
+    -webkit-transform: translateX(-10px);
+    opacity: 100%;
+  }
+  100% {
+    -webkit-transform: translateX(-1000px);
+    opacity: 0%;
+  }
+}
+@keyframes moovingRight {
+  0% {
+    -webkit-transform: translateX(-1000px);
+    opacity: 0%;
+  }
+  20% {
+    -webkit-transform: translateX(-20px);
+    opacity: 100%;
+  }
+  50% {
+    -webkit-transform: translateX(0px);
+    opacity: 100%;
+  }
+  80% {
+    -webkit-transform: translateX(20px);
+    opacity: 100%;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+    opacity: 0%;
+  }
+}
+
+.mooving-left {
+  font-size: 30px;
+  animation: moovingLeft 2s linear infinite;
+}
+
+.mooving-right {
+  font-size: 30px;
+  animation: moovingRight 2s linear infinite;
+}

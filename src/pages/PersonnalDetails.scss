@@ -4,6 +4,7 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px 0;
+  position: relative;
 
   .personnal-form {
     display: flex;
@@ -138,6 +139,63 @@
           font-size: 12px;
           margin-right: 10px;
         }
+      }
+    }
+  }
+
+  .confirmation-modal-bg {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transform: scale(0);
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .modal {
+      position: relative;
+      background-color: var(--clr-light);
+      transform: scale(0);
+      transition: transform 300ms ease;
+      padding: 50px 40px;
+      width: 500px;
+
+      h1 {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .referenceID {
+        font-size: 15px;
+      }
+      .reference-line {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+
+        .referenceID {
+          font-size: 20px;
+        }
+      }
+
+      .ico-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        padding: 5px;
+        font-size: 25px;
+        cursor: pointer;
+      }
+    }
+    &.visible {
+      transform: scale(1);
+      .modal {
+        transform: scale(1);
       }
     }
   }

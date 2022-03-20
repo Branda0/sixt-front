@@ -5,6 +5,7 @@ import { SearchContext } from "../context/SearchContext";
 import SearchComponents from "../components/SearchComponents";
 import OfferCard from "../components/OfferCard";
 import SelectModal from "../components/SelectModal";
+import Loader from "../components/Loader";
 
 import "./OfferList.scss";
 
@@ -74,6 +75,12 @@ const OfferList = () => {
     setFilters(newStyles);
   };
 
+  // Scroll to Top screen when coming from another page with navigate
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  //compute List of Offers that match criteria from filter selection (Berline, SUV etc)
   useEffect(() => {
     const computeFilteredOffers = () => {
       if (filters.length > 0) {
@@ -108,9 +115,12 @@ const OfferList = () => {
     // Get List of offers corresponding to search engine inputs
     const fetchData = async () => {
       setIsLoading(true);
-      //Prepare data for api call startDate and endDate with format YYYY-MM-DDTHH:MM:SS
+
+      // const response = await axios.get(
+      //   `http://localhost:4000/offers?agencyId=${agency}&startDate=${dateStart}T${timeStart.value}:00&endDate=${dateEnd}T${timeEnd.value}:00`
+      // );
       const response = await axios.get(
-        `http://localhost:4000/offers?agencyId=${agency}&startDate=${dateStart}T${timeStart.value}:00&endDate=${dateEnd}T${timeEnd.value}:00`
+        `https://brandao-sixt.herokuapp.com/offers?agencyId=${agency}&startDate=${dateStart}T${timeStart.value}:00&endDate=${dateEnd}T${timeEnd.value}:00`
       );
       setOffersData(response.data);
       setIsLoading(false);
@@ -137,7 +147,7 @@ const OfferList = () => {
     <div className={`offerlist-container ${selectModal && "modal"}`}>
       <SearchComponents />
       {isLoading ? (
-        <span>Loading</span>
+        <Loader />
       ) : (
         <>
           {selectModal && (

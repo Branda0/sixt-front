@@ -105,6 +105,8 @@
   }
 
   .back-office {
+    text-decoration: none;
+    color: var(--clr-dark);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,6 +114,11 @@
     font-family: "Roboto Condensed", sans-serif;
     font-weight: 700;
     letter-spacing: 0.2px;
+    cursor: pointer;
+
+    .test {
+      background-color: red;
+    }
 
     .ico-planet {
       font-size: 25px;
