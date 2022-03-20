@@ -39,9 +39,9 @@ const PersonnalDetails = () => {
   const [phoneCode, setPhoneCode] = useState("+33");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [postalCode, setPostalCode] = useState("");
-  const [dayOfBirth, setDayOfBirth] = useState();
-  const [monthOfBirth, setMonthOfBirth] = useState();
-  const [yearOfBirth, setYearOfBirth] = useState();
+  const [dayOfBirth, setDayOfBirth] = useState("");
+  const [monthOfBirth, setMonthOfBirth] = useState("");
+  const [yearOfBirth, setYearOfBirth] = useState("");
 
   const [referenceID, setReferenceID] = useState();
   const [confirmationModal, setConfirmationModal] = useState(false);

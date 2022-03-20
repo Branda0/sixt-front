@@ -17,13 +17,14 @@ const OfferConfig = () => {
   const { state } = useLocation();
 
   /////
+  /////
+  /////
   // if (state === null) navigate("/");
   /////
+  /////
+  /////
 
-  let offer = null;
-  if (state) {
-    offer = state.offer;
-  }
+  const offer = state.offer;
 
   // Get data from Context
   const data = useContext(SearchContext);
@@ -93,7 +94,7 @@ const OfferConfig = () => {
     }
   }, [offer.id]);
 
-  return offer ? (
+  return state ? (
     <div className={`offerconfig-container ${priceDetailModal && "modal"}`}>
       <SearchComponents />
       {isLoading ? (
