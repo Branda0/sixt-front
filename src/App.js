@@ -21,9 +21,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 function App() {
-  const [adminLogged, setAdminLogged] = useState(
-    String(localStorage.getItem("storedAdminPassword")) ? true : false
-  );
+  const [adminLogged, setAdminLogged] = useState(localStorage.getItem("storedAdminPassword") ? true : false);
   // modal states
 
   const setPassword = (password) => {
