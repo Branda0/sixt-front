@@ -14,8 +14,14 @@ export const SearchProvider = (props) => {
   const storedDateEnd = localStorage.getItem("storedDateEnd");
 
   //Search engine states
-  const [search, setSearch] = useState(storedSearch || "");
-  const [agency, setAgency] = useState(storedAgency || null);
+
+  // TEMPORARY BLOKC AGENCY DUE TO API ENDPOINT NOT PROVIDING AGENCY SEARCH RESULTS//
+
+  // const [search, setSearch] = useState(storedSearch || "");
+  // const [agency, setAgency] = useState(storedAgency || null);
+  const [search, setSearch] = useState("San Francisco Int Airport (US)");
+  const [agency, setAgency] = useState("S_44919");
+
   const [timeStart, setTimeStart] = useState(storedTimeStart || { value: timeTable[2], index: 2 });
   const [timeEnd, setTimeEnd] = useState(storedTimeEnd || { value: timeTable[16], index: 16 });
   const [dateStart, setDateStart] = useState(storedDateStart || moment(Date.now()).format("YYYY-MM-DD"));

@@ -81,7 +81,10 @@ const SearchComponents = () => {
             <span>Retrait et Retour</span>
             <div className={`searchBar ${searchModal && "selected"}`}>
               <i className="ico-search"></i>
-              <input
+
+              {/* TEMPORARY AGENCY LOCKED DUE TO API ENDPOINT NOT PROVINDING AGENCY SEARCH */}
+              <a className={`search-input ${agency && "selected"}`}>San Francisco Int Airport (US)</a>
+              {/* <input
                 className={`search-input ${agency && "selected"}`}
                 placeholder="Trouver une agence"
                 type="text"
@@ -96,7 +99,8 @@ const SearchComponents = () => {
                   setStartTimeModal(false);
                   setEndTimeModal(false);
                 }}
-              ></input>
+              ></input> */}
+              {/* TEMPORARY AGENCY LOCKED DUE TO API ENDPOINT NOT PROVINDING AGENCY SEARCH   */}
             </div>
           </div>
 
