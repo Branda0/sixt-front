@@ -48,7 +48,7 @@ const SearchComponents = () => {
       // Get List of agencies corresponding to search input
       const fetchData = async () => {
         // const response = await axios.get(`http://localhost:4000/agencies?term=${search}`);
-        const response = await axios.get(`https://brandao-sixt.herokuapp.com/agencies?term=${search}`);
+        const response = await axios.get(`https://branda0-sixt.up.railway.app/agencies?term=${search}`);
         setAgenciesData(response.data);
         setIsLoading(false);
       };

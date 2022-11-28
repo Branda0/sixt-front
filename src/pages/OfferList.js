@@ -120,7 +120,7 @@ const OfferList = () => {
       //   `http://localhost:4000/offers?agencyId=${agency}&startDate=${dateStart}T${timeStart.value}:00&endDate=${dateEnd}T${timeEnd.value}:00`
       // );
       const response = await axios.get(
-        `https://brandao-sixt.herokuapp.com/offers?agencyId=${agency}&startDate=${dateStart}T${timeStart.value}:00&endDate=${dateEnd}T${timeEnd.value}:00`
+        `https://branda0-sixt.up.railway.app/offers?agencyId=${agency}&startDate=${dateStart}T${timeStart.value}:00&endDate=${dateEnd}T${timeEnd.value}:00`
       );
       setOffersData(response.data);
       setIsLoading(false);

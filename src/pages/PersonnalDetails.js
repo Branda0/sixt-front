@@ -54,7 +54,7 @@ const PersonnalDetails = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://brandao-sixt.herokuapp.com/rental/new", {
+      const response = await axios.post("https://branda0-sixt.up.railway.app/rental/new", {
         //   const response = await axios.post("http://localhost:4000/rental/new", {
         gender,
         company,

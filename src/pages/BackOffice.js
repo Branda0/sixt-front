@@ -27,7 +27,7 @@ const BackOffice = ({ setPassword, adminLogged }) => {
   const fetchData = async () => {
     try {
       // const response = await axios.get("http://localhost:4000/rentals");
-      const response = await axios.get("https://brandao-sixt.herokuapp.com/rentals");
+      const response = await axios.get("https://branda0-sixt.up.railway.app/rentals");
       setRentalsData(response.data);
       console.log("data", response.data);
       setIsLoading(false);
@@ -39,7 +39,7 @@ const BackOffice = ({ setPassword, adminLogged }) => {
   const handleAdminSignIn = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://brandao-sixt.herokuapp.com/backoffice/login", {
+      const response = await axios.post("https://branda0-sixt.up.railway.app/backoffice/login", {
         adminPassword,
       });
 
@@ -61,7 +61,7 @@ const BackOffice = ({ setPassword, adminLogged }) => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`https://brandao-sixt.herokuapp.com/rental/delete?id=${id}`);
+      const response = await axios.delete(`https://branda0-sixt.up.railway.app/rental/delete?id=${id}`);
       // const response = await axios.delete(`http://localhost:4000/rental/delete?id=${id}`);
       fetchData();
     } catch (error) {
